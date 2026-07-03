@@ -136,7 +136,7 @@
     height: 5.5rem;
 
     color: #fff;
-    opacity: 0.055;
+    opacity: 0.045;
 
     transform: translateY(-50%) rotate(-8deg);
     pointer-events: none;
@@ -330,7 +330,7 @@
 .form-field textarea {
     min-height: 180px;
     resize: none;
-    overflow: hidden;
+    overflow: auto;
 }
 
 .form-field input:hover,

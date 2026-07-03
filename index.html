@@ -8,10 +8,120 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/font.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/mobile.css">
 </head>
 
-<body>
+<body style="background-color: #000;">
     <div id="site-header"></div>
+
+    <main class="home-page">
+        <section class="home-hero">
+
+            <h1>Game asset work, technical notes, and tutorials by djfox11</h1>
+
+            <p>
+                A collection of guides, projects, and resources focused on game models,
+                textures, conversion workflows, Blender setup, and the weird little
+                technical problems that come with digging through game files.
+            </p>
+
+            <div class="home-actions">
+                <a href="/tutorials/" class="home-button home-button-primary">
+                    Browse tutorials
+                </a>
+
+                <a href="/projects/" class="home-button home-button-secondary">
+                    View projects
+                </a>
+            </div>
+        </section>
+
+        <section class="home-section">
+            <div class="home-section-header">
+                <h2>Explore the site</h2>
+                <p>
+                    Find tutorials, project write-ups, contact details, and information
+                    about the kind of work I do as djfox11.
+                </p>
+            </div>
+
+            <div class="home-card-grid">
+                <a href="/about/" class="home-card">
+                    <span class="home-card-label">About</span>
+                    <h3>About djfox11</h3>
+                    <p>
+                        A quick overview of what I work on, the tools I use, and the
+                        areas of game asset research and documentation I focus on.
+                    </p>
+                    <span class="home-card-footer">
+                        Read more
+                        <span>→</span>
+                    </span>
+                </a>
+
+                <a href="/projects/" class="home-card">
+                    <span class="home-card-label">Projects</span>
+                    <h3>Things I’ve worked on</h3>
+                    <p>
+                        Scripts, experiments, web tools, research notes, and other
+                        technical projects connected to game assets and documentation.
+                    </p>
+                    <span class="home-card-footer">
+                        View projects
+                        <span>→</span>
+                    </span>
+                </a>
+
+                <a href="/tutorials/" class="home-card">
+                    <span class="home-card-label">Tutorials</span>
+                    <h3>Guides and workflows</h3>
+                    <p>
+                        Tutorials for asset extraction, model conversion, texture fixes,
+                        Blender setup, and other game-file related processes.
+                    </p>
+                    <span class="home-card-footer">
+                        Browse tutorials
+                        <span>→</span>
+                    </span>
+                </a>
+            </div>
+        </section>
+
+        <section class="home-highlight">
+            <div class="home-highlight-content">
+                <h2>Clean, useful documentation for niche technical workflows.</h2>
+                <p>
+                    A lot of game asset work involves tiny details that are easy to lose:
+                    texture channel quirks, export settings, material setup, file format
+                    notes, and tool-specific behaviour. This site is where I can keep
+                    those notes organised and readable.
+                </p>
+            </div>
+
+            <div class="home-highlight-list">
+                <span>Blender scene setup</span>
+                <span>Model conversion</span>
+                <span>Texture workflows</span>
+                <span>Game file research</span>
+                <span>Small tools and scripts</span>
+                <span>Tutorial writing</span>
+            </div>
+        </section>
+
+        <section class="home-cta">
+            <h2>Found an issue or want to send something through?</h2>
+            <p>
+                Corrections, questions, project feedback, and tutorial suggestions are
+                all welcome.
+            </p>
+
+            <a href="/contact/" class="home-button home-button-primary">
+                Contact me
+            </a>
+        </section>
+    </main>
+
     <div id="site-footer"></div>
     <script src="/assets/js/includes.js"></script>
 </body>

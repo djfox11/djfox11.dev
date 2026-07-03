@@ -4,16 +4,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>djfox11 | Home</title>
+    <title>djfox11 | About Me</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/font.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
+    <link rel="stylesheet" href="/assets/css/about.css">
+    <link rel="stylesheet" href="/assets/css/mobile.css">
 </head>
 
-<body>
+<body style="background: #000;">
     <div id="site-header"></div>
+
+    <main class="about-page">
+        <section class="about-page-header">
+            <h1>About djfox11</h1>
+            <p>
+                Well, what do you want to know about me?
+            </p>
+        </section>
+
+        <section class="about-stack">
+            <section class="about-panel">
+                <div class="about-panel-copy">
+                    <h2>Hi, I'm djfox11</h2>
+                    <p>
+                        I'm interested in game assets, web development, and figuring out how things work. This site is where I showcase the things I make, things I love, and things I do. It's also a collection of my written ripping tutorials that would otherwise end up scattered across folders and half-finished text files.
+                    </p>
+                </div>
+
+                <div class="about-panel-card about-identity-card">
+                    <span class="about-card-label">Online as</span>
+                    <strong>djfox11</strong>
+                    <p>
+                        A title I use for everything I do online. Keeps everything neat and tidy across the web.
+                    </p>
+                </div>
+            </section>
+
+            <section class="about-panel about-panel-flipped about-panel-tinted">
+                <div class="about-panel-copy">
+                    <h2>What I'm studying</h2>
+                    <p>
+                        I'm studying cybersecurity, which fits quite naturally into how I think: systems, files, networks, tools, and how something behaves the way it does.
+                    </p>
+                </div>
+
+                <div class="about-panel-card about-note-card">
+                    <div class="about-chip-group">
+                        <span>Web development</span>
+                        <span>Game asset research</span>
+                        <span>Technical writing</span>
+                        <span>Programming</span>
+                        <span>Video games</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-panel">
+                <div class="about-panel-copy">
+                    <h2>Tools I use</h2>
+                    <p>
+                        Most of the work I do jumps between creative tools, code editors, game asset tools, and everything in between.
+                    </p>
+                </div>
+
+                <div class="about-panel-card">
+
+                    <div class="about-chip-group">
+                        <span>Blender</span>
+                        <span>VS Code</span>
+                        <span>Switch Toolbox</span>
+                        <span>Cafe Shader Studio</span>
+                        <span>UE Viewer</span>
+                        <span>FFmpeg</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-panel about-panel-flipped about-panel-tinted">
+                <div class="about-panel-copy">
+                    <h2>Games I can't live without</h2>
+                    <p>
+                        I love games with memoriable worlds, strong visual direction, beloved characters, great music. Sometimes all of the above, which is dangerous to my free time and wallet.
+                    </p>
+                </div>
+
+                <div class="about-panel-card">
+
+                    <div class="about-game-grid">
+                        <a href="" class="about-game-item">
+                            <img src="/assets/images/about-games/ff7.png" alt="">
+                            <span>Final Fantasy VII</span>
+                        </a>
+
+                        <a href="" class="about-game-item">
+                            <img src="/assets/images/about-games/mario.png" alt="">
+                            <span>Super Mario</span>
+                        </a>
+
+                        <a href="" class="about-game-item">
+                            <img src="/assets/images/about-games/tloz.png" alt="">
+                            <span>The Legend of Zelda</span>
+                        </a>
+
+                        <a href="" class="about-game-item">
+                            <img src="/assets/images/about-games/portal.png" alt="">
+                            <span>Portal</span>
+                        </a>
+
+                        <a href="" class="about-game-item">
+                            <img src="/assets/images/about-games/hl.png" alt="">
+                            <span>Half-Life</span>
+                        </a>
+
+                        <a href="" class="about-game-item">
+                            <img src="/assets/images/about-games/dbh.png" alt="">
+                            <span>Detroit: Become Human</span>
+                        </a>
+
+                        <a href="" class="about-game-item">
+                            <img src="/assets/images/about-games/tsp.png" alt="">
+                            <span>The Stanley Parable</span>
+                        </a>
+
+                        <a href="" class="about-game-item">
+                            <img src="/assets/images/about-games/s.png" alt="">
+                            <span>Superliminal</span>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-panel">
+                <div class="about-panel-copy">
+                    <h2>Nothing but music</h2>
+                    <p>
+                        Game music is one of the big things that sticks with me. I like strong melodies, emotional themes, clever arrangements and little bits that make a track feel tied to a place character or moment.
+                    </p>
+                    <p>
+                        I also play the piano using sheet music and MIDI tools such as Synthesia. Hence why soundtracks and game music is something I'm so fond of.
+                    </p>
+                </div>
+
+                <div class="about-panel-card about-music-card">
+                    <div class="music-picker">
+                        <article class="music-display">
+                            <img id="music-cover" src="/assets/images/music/ff7r.webp">
+
+                            <div class="music-display-copy">
+                                <h3 id="music-title">Hollow</h3>
+                                <p id="music-source">Final Fantasy VII Remake</p>
+                            </div>
+                        </article>
+
+                        <div class="music-list">
+                            <button class="music-item is-active" type="button" data-cover="/assets/images/music/ff7r.webp" data-title="Hollow" data-source="Final Fantasy VII Remake">
+                                <span>Hollow</span>
+                                <small>Final Fantasy VII Remake</small>
+                            </button>
+
+                            <button class="music-item" type="button" data-cover="/assets/images/music/ff7r.webp" data-title="One-Winged Angel - Rebirth" data-source="Final Fantasy VII Remake">
+                                <span>One-Winged Angel - Rebirth</span>
+                                <small>Final Fantasy VII Remake</small>
+                            </button>
+
+                            <button class="music-item" type="button" data-cover="/assets/images/music/dwvii.webp" data-title="Find the Flame" data-source="Distant Worlds VII">
+                                <span>Find the Flame</span>
+                                <small>Distant Worlds VII</small>
+                            </button>
+
+                            <button class="music-item" type="button" data-cover="/assets/images/music/smg2.webp" data-title="Staff Roll" data-source="Super Mario Galaxy 2">
+                                <span>Staff Roll</span>
+                                <small>Super Mario Galaxy 2</small>
+                            </button>
+
+                            <button class="music-item" type="button" data-cover="/assets/images/music/dwiv.webp" data-title="APOCALYPSIS NOCTIS" data-source="Distant Worlds IV">
+                                <span>APOCALYPSIS NOCTIS</span>
+                                <small>Distant Worlds IV</small>
+                            </button>
+
+                            <button class="music-item" type="button" data-cover="/assets/images/music/mkw.webp" data-title="Bone-Dry Dunes [Mario Kart 8]" data-source="Mario Kart World">
+                                <span>Bone-Dry Dunes [Mario Kart 8]</span>
+                                <small>Mario Kart World</small>
+                            </button>
+
+                            <button class="music-item" type="button" data-cover="/assets/images/music/tsmgm.webp" data-title="Super Mario Galaxy" data-source="The Super Mario Galaxy Movie">
+                                <span>Super Mario Galaxy</span>
+                                <small>The Super Mario Galaxy Movie</small>
+                            </button>
+
+                            <button class="music-item" type="button" data-cover="/assets/images/music/ff7r.webp" data-title="Tifa's Theme" data-source="Final Fantasy VII Remake">
+                                <span>Tifa's Theme</span>
+                                <small>Final Fantasy VII Remake</small>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="about-panel about-panel-flipped about-panel-tinted">
+                <div class="about-panel-copy">
+                    <h2>The Models Resource</h2>
+                    <p>
+                        I'm also a staff member at The Models Resource, where I help review submitted model rips and help out with the site while contributing some rips of my own. This has shaped how I think about preservation and organisation, credits, documentation and making something accessible for all people.
+                    </p>
+                </div>
+            </section>
+    </main>
+
     <div id="site-footer"></div>
     <script src="/assets/js/includes.js"></script>
+    <script src="/assets/js/about.js"></script>
 </body>
 
 </html>

@@ -11,7 +11,7 @@ body {
 body {
     background-color: #000;
     color: #fff;
-    font-family: "Figtree", sans-serif;
+    font-family: "Figtree";
 }
 
 .site-header {
@@ -254,4 +254,8 @@ body {
 ::selection {
     background-color: #fff;
     color: #000;
+}
+
+.nav-toggle {
+    display: none;
 }
