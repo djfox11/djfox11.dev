@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Game models, Blender, and figuring things out. Tutorials, tools, and notes by Evan, usually known online as djfox11.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>djfox11 | Home</title>
     <link rel="stylesheet" href="/assets/css/style.css">
@@ -16,33 +17,34 @@
     <div id="site-header"></div>
 
     <main class="home-page">
-        <section class="home-hero">
-
-            <h1>Game asset work, technical notes, and tutorials by djfox11</h1>
-
-            <p>
-                A collection of guides, projects, and resources focused on game models,
-                textures, conversion workflows, Blender setup, and the weird little
-                technical problems that come with digging through game files.
-            </p>
-
-            <div class="home-actions">
-                <a href="/tutorials/" class="home-button home-button-primary">
-                    Browse tutorials
-                </a>
-
-                <a href="/projects/" class="home-button home-button-secondary">
-                    View projects
-                </a>
+        <section class="home-hero" aria-labelledby="home-title">
+            <div class="home-hero-copy">
+                <p class="home-eyebrow">Evan / djfox11 &nbsp; — &nbsp; Game assets &amp; code</p>
+                <h1 id="home-title">Game models,<br>Blender, and<br>figuring things out<span>.</span></h1>
+                <p class="home-lede">I'm Evan, usually known online as djfox11. I work with game assets, write tools, and spend a lot of time getting models and materials working in Blender. This is where I share my tutorials, projects, and things I've figured out along the way.</p>
+                <div class="home-actions">
+                    <a href="/tutorials/" class="home-button home-button-primary">Browse tutorials <span aria-hidden="true">↗</span></a>
+                    <a href="/about/" class="home-text-link">A little about me <span aria-hidden="true">↗</span></a>
+                </div>
             </div>
+            <a class="home-feature" href="/tutorials/switch/super-mario-odyssey.html">
+                <div class="home-feature-image">
+                    <img src="/assets/images/tutorial-headers/smo.png" alt="Mario and Cappy exploring the worlds of Super Mario Odyssey" width="1920" height="620" fetchpriority="high">
+                    <span class="home-feature-tag">Model ripping / 01</span>
+                </div>
+                <div class="home-feature-caption">
+                    <div><span class="home-eyebrow">Featured guide / Nintendo Switch</span><h2>Super Mario Odyssey</h2><p>Extracting Odyssey models and setting them up in Blender.</p></div>
+                    <span class="home-feature-arrow" aria-hidden="true">↗</span>
+                </div>
+            </a>
         </section>
+        <div class="home-topics" aria-label="Topics"><span>Game asset research</span><span>Blender workflows</span><span>Models &amp; materials</span><span>Tools &amp; experiments</span></div>
 
         <section class="home-section">
             <div class="home-section-header">
-                <h2>Explore the site</h2>
+                <h2>What you'll find here</h2>
                 <p>
-                    Find tutorials, project write-ups, contact details, and information
-                    about the kind of work I do as djfox11.
+                    Tutorials if you need a hand, projects if you're curious about my code, and a bit about me.
                 </p>
             </div>
 
@@ -51,8 +53,7 @@
                     <span class="home-card-label">About</span>
                     <h3>About djfox11</h3>
                     <p>
-                        A quick overview of what I work on, the tools I use, and the
-                        areas of game asset research and documentation I focus on.
+                        What I do, the tools I use, and the games and music I keep coming back to.
                     </p>
                     <span class="home-card-footer">
                         Read more
@@ -64,8 +65,7 @@
                     <span class="home-card-label">Projects</span>
                     <h3>Things I’ve worked on</h3>
                     <p>
-                        Scripts, experiments, web tools, research notes, and other
-                        technical projects connected to game assets and documentation.
+                        Tools and scripts I've made while working with game assets. I'm still putting the write-ups together.
                     </p>
                     <span class="home-card-footer">
                         View projects
@@ -75,10 +75,9 @@
 
                 <a href="/tutorials/" class="home-card">
                     <span class="home-card-label">Tutorials</span>
-                    <h3>Guides and workflows</h3>
+                    <h3>Written guides</h3>
                     <p>
-                        Tutorials for asset extraction, model conversion, texture fixes,
-                        Blender setup, and other game-file related processes.
+                        How to extract game models, convert them, and get their textures and materials working in Blender.
                     </p>
                     <span class="home-card-footer">
                         Browse tutorials
@@ -90,19 +89,16 @@
 
         <section class="home-highlight">
             <div class="home-highlight-content">
-                <h2>Clean, useful documentation for niche technical workflows.</h2>
+                <h2>Writing it down so I don't have to figure it out twice.</h2>
                 <p>
-                    A lot of game asset work involves tiny details that are easy to lose:
-                    texture channel quirks, export settings, material setup, file format
-                    notes, and tool-specific behaviour. This site is where I can keep
-                    those notes organised and readable.
+                    It's easy to forget which texture channel does what, or which export setting fixed a problem. I keep those notes here so I can find them again. Hopefully they'll save you some time too.
                 </p>
             </div>
 
             <div class="home-highlight-list">
                 <span>Blender scene setup</span>
                 <span>Model conversion</span>
-                <span>Texture workflows</span>
+                <span>Texture channels</span>
                 <span>Game file research</span>
                 <span>Small tools and scripts</span>
                 <span>Tutorial writing</span>
@@ -110,10 +106,9 @@
         </section>
 
         <section class="home-cta">
-            <h2>Found an issue or want to send something through?</h2>
+            <h2>Something wrong with a guide?</h2>
             <p>
-                Corrections, questions, project feedback, and tutorial suggestions are
-                all welcome.
+                If something doesn't work, or I've missed a step, let me know. Questions and suggestions are welcome too.
             </p>
 
             <a href="/contact/" class="home-button home-button-primary">

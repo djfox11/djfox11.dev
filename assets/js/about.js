@@ -1,85 +1,108 @@
-console.log("about.js loaded");
-
-const musicItems = document.querySelectorAll(".music-item");
-const musicDisplay = document.querySelector(".music-display");
+const musicItems = Array.from(document.querySelectorAll(".music-item"));
 const musicCover = document.getElementById("music-cover");
 const musicTitle = document.getElementById("music-title");
 const musicSource = document.getElementById("music-source");
-const musicNote = document.getElementById("music-note");
+const musicAudio = document.getElementById("music-audio");
+const musicStatus = document.getElementById("music-status");
+const musicStop = document.getElementById("music-stop");
 
-console.log({
-    musicItemsFound: musicItems.length,
-    musicDisplay,
-    musicCover,
-    musicTitle,
-    musicSource,
-    musicNote,
-});
+if (musicAudio && musicStatus && musicStop && musicItems.length) {
+    let selectedItem = musicItems.find((item) => item.classList.contains("is-active")) || musicItems[0];
+    let playRequest = 0;
 
-function setActiveMusicItem(selectedItem) {
-    if (!selectedItem) {
-        return;
+    function updateControls() {
+        const playing = !musicAudio.paused && !musicAudio.ended;
+        musicItems.forEach((item) => {
+            const selected = item === selectedItem;
+            const isPlaying = selected && playing;
+            item.classList.toggle("is-active", selected);
+            item.classList.toggle("is-playing", isPlaying);
+            item.setAttribute("aria-pressed", String(isPlaying));
+            item.setAttribute("aria-label", `${isPlaying ? "Pause" : "Play"} ${item.dataset.title} clip`);
+        });
+        musicStop.disabled = musicAudio.paused && musicAudio.currentTime === 0;
     }
 
-    if (!musicCover || !musicTitle || !musicSource) {
-        console.warn("Music picker is missing required display elements.");
-        return;
+    async function playClip() {
+        const request = ++playRequest;
+        musicStatus.textContent = `Loading ${selectedItem.dataset.title}…`;
+        try {
+            await musicAudio.play();
+        } catch (error) {
+            // A newer selection or a pause can cancel a pending play request.
+            if (request !== playRequest || error.name === "AbortError") return;
+            console.error("Could not play the selected music clip:", error);
+            musicStatus.textContent = error.name === "NotAllowedError"
+                ? "Playback was blocked. Try the player's play button."
+                : "This clip couldn't be played. Try another song.";
+            updateControls();
+        }
     }
 
     musicItems.forEach((item) => {
-        item.classList.remove("is-active");
-        item.setAttribute("aria-pressed", "false");
+        item.addEventListener("click", () => {
+            if (item === selectedItem) {
+                if (!musicAudio.paused && !musicAudio.ended) {
+                    ++playRequest;
+                    musicAudio.pause();
+                } else {
+                    if (musicAudio.ended) musicAudio.currentTime = 0;
+                    playClip();
+                }
+                return;
+            }
+
+            ++playRequest;
+            musicAudio.pause();
+            selectedItem = item;
+            musicAudio.src = item.dataset.audio;
+            musicAudio.setAttribute("aria-label", `${item.dataset.title} audio clip`);
+            musicCover.src = item.dataset.cover;
+            musicCover.alt = `${item.dataset.source} cover art`;
+            musicTitle.textContent = item.dataset.title;
+            musicSource.textContent = item.dataset.source;
+            updateControls();
+            playClip();
+        });
     });
 
-    selectedItem.classList.add("is-active");
-    selectedItem.setAttribute("aria-pressed", "true");
-
-    const cover = selectedItem.dataset.cover;
-    const coverAlt = selectedItem.dataset.coverAlt;
-    const title = selectedItem.dataset.title;
-    const source = selectedItem.dataset.source;
-    const note = selectedItem.dataset.note;
-
-    if (musicDisplay) {
-        musicDisplay.classList.add("is-changing");
-    }
-
-    setTimeout(() => {
-        if (cover) {
-            musicCover.src = cover;
+    musicAudio.addEventListener("play", updateControls);
+    musicAudio.addEventListener("playing", () => {
+        musicStatus.textContent = `Playing ${selectedItem.dataset.title}`;
+        updateControls();
+    });
+    musicAudio.addEventListener("pause", () => {
+        if (!musicAudio.ended && !musicAudio.error) {
+            musicStatus.textContent = musicAudio.currentTime === 0
+                ? "Stopped. Choose a song or press play."
+                : `Paused · ${selectedItem.dataset.title}`;
         }
-
-        if (coverAlt) {
-            musicCover.alt = coverAlt;
-        } else if (title && source) {
-            musicCover.alt = `${title} - ${source} cover art`;
-        }
-
-        if (title) {
-            musicTitle.textContent = title;
-        }
-
-        if (source) {
-            musicSource.textContent = source;
-        }
-
-        if (musicNote && note) {
-            musicNote.textContent = note;
-        }
-
-        if (musicDisplay) {
-            musicDisplay.classList.remove("is-changing");
-        }
-    }, 120);
+        updateControls();
+    });
+    musicAudio.addEventListener("waiting", () => {
+        if (!musicAudio.paused) musicStatus.textContent = `Loading ${selectedItem.dataset.title}…`;
+    });
+    musicAudio.addEventListener("ended", () => {
+        musicStatus.textContent = "Clip finished. Play it again or choose another song.";
+        updateControls();
+    });
+    musicAudio.addEventListener("error", () => {
+        musicStatus.textContent = "This clip couldn't be loaded. Try another song.";
+        updateControls();
+    });
+    musicAudio.addEventListener("timeupdate", () => {
+        musicStop.disabled = musicAudio.paused && musicAudio.currentTime === 0;
+    });
+    musicStop.addEventListener("click", () => {
+        ++playRequest;
+        musicAudio.pause();
+        musicAudio.currentTime = 0;
+        musicStatus.textContent = "Stopped. Choose a song or press play.";
+        updateControls();
+    });
+    window.addEventListener("pagehide", () => {
+        ++playRequest;
+        musicAudio.pause();
+    });
+    updateControls();
 }
-
-musicItems.forEach((item) => {
-    item.setAttribute(
-        "aria-pressed",
-        item.classList.contains("is-active") ? "true" : "false"
-    );
-
-    item.addEventListener("click", () => {
-        setActiveMusicItem(item);
-    });
-});

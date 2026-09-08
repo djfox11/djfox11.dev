@@ -5,7 +5,7 @@ async function includeHTML(id, file) {
         return;
     }
 
-    const response = await fetch(file);
+    const response = await fetch(file, { cache: "no-cache" });
     element.innerHTML = await response.text();
 
     if (id === "site-header") {
@@ -15,7 +15,7 @@ async function includeHTML(id, file) {
 }
 
 function setActiveNav() {
-    const path = window.location.pathname;
+    const path = window.location.pathname.replace(/index\.html$/, "");
 
     document.querySelectorAll(".nav a").forEach((link) => {
         const href = link.getAttribute("href");
@@ -25,6 +25,7 @@ function setActiveNav() {
             href !== "/" && path.startsWith(href)
         ) {
             link.classList.add("active");
+            link.setAttribute("aria-current", "page");
         }
     });
 }
@@ -69,13 +70,24 @@ function initMobileNav() {
     });
 
     document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
+        if (event.key === "Escape" && header.classList.contains("is-nav-open")) {
             closeNav();
+            toggle.focus();
+        }
+        if (event.key === "Tab" && header.classList.contains("is-nav-open")) {
+            const lastLink = navLinks[navLinks.length - 1];
+            if (event.shiftKey && document.activeElement === toggle) {
+                event.preventDefault();
+                lastLink.focus();
+            } else if (!event.shiftKey && document.activeElement === lastLink) {
+                event.preventDefault();
+                toggle.focus();
+            }
         }
     });
 
     window.addEventListener("resize", () => {
-        if (window.innerWidth > 820) {
+        if (window.innerWidth > 980) {
             closeNav();
         }
     });

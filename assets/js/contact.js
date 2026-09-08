@@ -50,7 +50,7 @@ function resetCustomSelect() {
     const selectedText = document.querySelector("[data-selected-text]");
 
     if (selectedText) {
-        selectedText.textContent = "Choose one";
+        selectedText.textContent = "Choose a topic";
     }
 
     document.querySelectorAll(".custom-select-menu [role='option']").forEach((option) => {
@@ -137,11 +137,11 @@ if (form) {
         event.preventDefault();
 
         if (!reasonInput || !reasonInput.value) {
-            showToast("Please choose a reason first.", "error");
+            showToast("Please choose a topic before sending your message.", "error");
             return;
         }
 
-        showToast("Sending message...", "info", 0);
+        showToast("Sending your message...", "info", 0);
 
         if (submitButton) {
             submitButton.disabled = true;
@@ -151,7 +151,7 @@ if (form) {
         const reason = reasonInput.value || "General enquiry";
 
         if (subjectInput) {
-            subjectInput.value = `📬 evanmcnicol.com: ${reason} from ${senderName}`;
+            subjectInput.value = `📬 djfox11.com: ${reason} from ${senderName}`;
         }
 
         if (pageUrlInput) {
@@ -169,15 +169,15 @@ if (form) {
             const data = await response.json();
 
             if (data.success) {
-                showToast("Message sent successfully. Thanks!", "success");
+                showToast("Thanks! Your message has been sent.", "success");
                 form.reset();
                 resetCustomSelect();
             } else {
-                showToast(data.message || "Something went wrong. Please try again.", "error");
+                showToast(data.message || "Your message didn't go through. Please try again.", "error");
             }
         } catch (error) {
             console.error(error);
-            showToast("Unable to send message. Please try again later.", "error");
+            showToast("Your message didn't go through. Please try again later, or email me instead.", "error");
         } finally {
             if (submitButton) {
                 submitButton.disabled = false;

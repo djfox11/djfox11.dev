@@ -1,12 +1,3 @@
-/* =========================================================
-   Tutorial Page CSS
-   For individual game ripping tutorial pages
-========================================================= */
-
-/* -------------------------
-   Base page
-------------------------- */
-
 *,
 *::before,
 *::after {
@@ -25,14 +16,10 @@ body {
 
 .tutorial-page {
     background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.045), transparent 34rem),
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.045), transparent 34rem),
         #000;
     color: #f0f0f0;
 }
-
-/* =========================================================
-   Cinematic tutorial hero
-========================================================= */
 
 .tutorial-hero {
     position: relative;
@@ -41,7 +28,7 @@ body {
     align-items: flex-end;
     overflow: hidden;
     isolation: isolate;
-    border-bottom: 1px solid rgba(255,255,255,0.09);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .tutorial-hero::after {
@@ -70,7 +57,6 @@ body {
     filter: saturate(1.05) contrast(1.05);
 }
 
-/* Per-page helpers for awkward banner crops */
 .tutorial-hero-image-left {
     object-position: left center;
 }
@@ -94,23 +80,17 @@ body {
     pointer-events: none;
 
     background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,0.96) 0%,
-            rgba(0,0,0,0.82) 18%,
-            rgba(0,0,0,0.35) 55%,
-            rgba(0,0,0,0.56) 100%
-        ),
-        radial-gradient(
-            circle at 22% 72%,
-            rgba(255,255,255,0.16),
-            transparent 34rem
-        ),
-        radial-gradient(
-            circle at 78% 26%,
-            rgba(255,255,255,0.08),
-            transparent 28rem
-        );
+        linear-gradient(to top,
+            rgba(0, 0, 0, 0.96) 0%,
+            rgba(0, 0, 0, 0.82) 18%,
+            rgba(0, 0, 0, 0.35) 55%,
+            rgba(0, 0, 0, 0.56) 100%),
+        radial-gradient(circle at 22% 72%,
+            rgba(255, 255, 255, 0.16),
+            transparent 34rem),
+        radial-gradient(circle at 78% 26%,
+            rgba(255, 255, 255, 0.08),
+            transparent 28rem);
 }
 
 .tutorial-hero-content {
@@ -129,7 +109,7 @@ body {
     width: fit-content;
     margin-bottom: 1.25rem;
 
-    color: rgba(255,255,255,0.72);
+    color: rgba(255, 255, 255, 0.72);
     text-decoration: none;
     font-size: 0.95rem;
     font-weight: 700;
@@ -145,7 +125,7 @@ body {
 }
 
 .tutorial-back-link:focus-visible {
-    outline: 2px solid rgba(255,255,255,0.38);
+    outline: 2px solid rgba(255, 255, 255, 0.38);
     outline-offset: 4px;
     border-radius: 6px;
 }
@@ -164,8 +144,8 @@ body {
     padding: 0 0.78rem;
 
     color: #ededed;
-    background: rgba(0,0,0,0.46);
-    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(0, 0, 0, 0.46);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 999px;
 
     font-size: 0.9rem;
@@ -204,19 +184,15 @@ body {
     text-wrap: balance;
 }
 
-.tutorial-hero-content > p {
+.tutorial-hero-content>p {
     max-width: 760px;
     margin: 1.25rem 0 0;
 
-    color: rgba(255,255,255,0.78);
+    color: rgba(255, 255, 255, 0.78);
     font-size: clamp(1.05rem, 1.5vw, 1.28rem);
     font-weight: 500;
     line-height: 1.65;
 }
-
-/* =========================================================
-   Main tutorial layout
-========================================================= */
 
 .tutorial-layout {
     max-width: 1480px;
@@ -234,10 +210,6 @@ body {
     min-width: 0;
 }
 
-/* =========================================================
-   Sidebar
-========================================================= */
-
 .tutorial-sidebar {
     position: sticky;
     top: 96px;
@@ -247,15 +219,15 @@ body {
 
 .tutorial-sidebar-card {
     background:
-        linear-gradient(145deg, rgba(255,255,255,0.045), transparent),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent),
         #101010;
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 16px;
     padding: 1rem;
 
     box-shadow:
-        0 18px 60px rgba(0,0,0,0.28),
-        inset 0 1px rgba(255,255,255,0.035);
+        0 18px 60px rgba(0, 0, 0, 0.28),
+        inset 0 1px rgba(255, 255, 255, 0.035);
 }
 
 .tutorial-sidebar-card h2 {
@@ -292,7 +264,7 @@ body {
 
 .tutorial-sidebar-card a:hover {
     color: #fff;
-    background: rgba(255,255,255,0.065);
+    background: rgba(255, 255, 255, 0.065);
 }
 
 .tutorial-sidebar-card a:active {
@@ -300,11 +272,9 @@ body {
 }
 
 .tutorial-sidebar-card a:focus-visible {
-    outline: 2px solid rgba(255,255,255,0.34);
+    outline: 2px solid rgba(255, 255, 255, 0.34);
     outline-offset: 2px;
 }
-
-/* Guide facts card */
 
 .tutorial-facts {
     padding: 1.1rem;
@@ -336,10 +306,6 @@ body {
     line-height: 1.45;
 }
 
-/* =========================================================
-   Article typography
-========================================================= */
-
 .tutorial-section {
     scroll-margin-top: 112px;
     margin-bottom: 4.25rem;
@@ -354,8 +320,8 @@ body {
     margin: 0 0 1rem;
 
     color: #cfcfcf;
-    background: rgba(255,255,255,0.055);
-    border: 1px solid rgba(255,255,255,0.105);
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.105);
     border-radius: 999px;
     padding: 0.45rem 0.78rem;
 
@@ -423,25 +389,21 @@ body {
     line-height: 1.75;
 }
 
-.tutorial-content li + li {
+.tutorial-content li+li {
     margin-top: 0.35rem;
 }
-
-/* =========================================================
-   Learning / requirements cards
-========================================================= */
 
 .tutorial-learn-box {
     margin-top: 1.25rem;
     padding: 1.25rem;
 
     background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 20rem),
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 20rem),
         #101010;
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 16px;
 
-    box-shadow: inset 0 1px rgba(255,255,255,0.035);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.035);
 }
 
 .tutorial-learn-box h2 {
@@ -465,13 +427,13 @@ body {
     min-height: 100%;
 
     background:
-        linear-gradient(145deg, rgba(255,255,255,0.045), transparent),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent),
         #101010;
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 16px;
     padding: 1.15rem;
 
-    box-shadow: inset 0 1px rgba(255,255,255,0.035);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.035);
 }
 
 .requirement-card h3 {
@@ -482,10 +444,6 @@ body {
     margin: 0;
     padding-left: 1.1rem;
 }
-
-/* =========================================================
-   Step list
-========================================================= */
 
 .tutorial-steps {
     counter-reset: tutorial-step;
@@ -504,15 +462,15 @@ body {
 
     color: #c8c8c8;
     background:
-        linear-gradient(145deg, rgba(255,255,255,0.035), transparent),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent),
         #101010;
-    border: 1px solid rgba(255,255,255,0.085);
+    border: 1px solid rgba(255, 255, 255, 0.085);
     border-radius: 16px;
 
     padding: 1rem 1rem 1rem 3.35rem;
     line-height: 1.65;
 
-    box-shadow: inset 0 1px rgba(255,255,255,0.03);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .tutorial-steps li::before {
@@ -536,10 +494,6 @@ body {
     line-height: 1;
 }
 
-/* =========================================================
-   Notes / warnings / callouts
-========================================================= */
-
 .tutorial-note,
 .tutorial-warning {
     margin: 1.25rem 0;
@@ -553,9 +507,9 @@ body {
 .tutorial-note {
     color: #d5d5d5;
     background:
-        linear-gradient(135deg, rgba(255,255,255,0.06), transparent),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent),
         #101010;
-    border: 1px solid rgba(255,255,255,0.13);
+    border: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .tutorial-warning {
@@ -571,10 +525,6 @@ body {
     color: #fff;
 }
 
-/* =========================================================
-   Figures / images in tutorial body
-========================================================= */
-
 .tutorial-figure {
     margin: 1.6rem 0;
 }
@@ -584,12 +534,12 @@ body {
     display: block;
 
     background: #111;
-    border: 1px solid rgba(255,255,255,0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 18px;
 
     box-shadow:
-        0 24px 80px rgba(0,0,0,0.35),
-        inset 0 1px rgba(255,255,255,0.035);
+        0 24px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px rgba(255, 255, 255, 0.035);
 }
 
 .tutorial-figure figcaption {
@@ -600,20 +550,16 @@ body {
     line-height: 1.5;
 }
 
-/* =========================================================
-   Code blocks
-========================================================= */
-
 .tutorial-content pre {
     overflow-x: auto;
     margin: 1.25rem 0;
     padding: 1rem 1.1rem;
 
     background: #0d0d0d;
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 16px;
 
-    box-shadow: inset 0 1px rgba(255,255,255,0.03);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.03);
 }
 
 .tutorial-content code {
@@ -622,22 +568,18 @@ body {
     font-size: 0.95rem;
 }
 
-/* =========================================================
-   FAQ / details
-========================================================= */
-
 .tutorial-content details {
     background:
-        linear-gradient(145deg, rgba(255,255,255,0.035), transparent),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.035), transparent),
         #101010;
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 16px;
     padding: 1rem 1.1rem;
 
-    box-shadow: inset 0 1px rgba(255,255,255,0.03);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.03);
 }
 
-.tutorial-content details + details {
+.tutorial-content details+details {
     margin-top: 0.75rem;
 }
 
@@ -656,15 +598,6 @@ body {
     margin-top: 0.9rem;
     margin-bottom: 0;
 }
-
-/* =========================================================
-   End navigation / next guide area
-   Optional HTML:
-   <nav class="tutorial-next">
-      <a href="#">← Previous guide</a>
-      <a href="#">Next guide →</a>
-   </nav>
-========================================================= */
 
 .tutorial-next {
     margin-top: 5rem;
@@ -685,9 +618,9 @@ body {
     text-decoration: none;
 
     background:
-        linear-gradient(145deg, rgba(255,255,255,0.045), transparent),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.045), transparent),
         #101010;
-    border: 1px solid rgba(255,255,255,0.09);
+    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 16px;
 
     transition:
@@ -698,15 +631,11 @@ body {
 
 .tutorial-next a:hover {
     background:
-        linear-gradient(145deg, rgba(255,255,255,0.07), transparent),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.07), transparent),
         #141414;
-    border-color: rgba(255,255,255,0.18);
+    border-color: rgba(255, 255, 255, 0.18);
     transform: translateY(-2px);
 }
-
-/* =========================================================
-   Responsive
-========================================================= */
 
 @media (max-width: 1100px) {
     .tutorial-layout {
@@ -726,7 +655,7 @@ body {
     }
 
     .tutorial-sidebar-card a {
-        background: rgba(255,255,255,0.04);
+        background: rgba(255, 255, 255, 0.04);
     }
 
     .tutorial-facts dl {
@@ -770,7 +699,7 @@ body {
         letter-spacing: -0.065em;
     }
 
-    .tutorial-hero-content > p {
+    .tutorial-hero-content>p {
         font-size: 1rem;
     }
 
@@ -798,10 +727,6 @@ body {
     }
 }
 
-/* =========================================================
-   Reduced motion
-========================================================= */
-
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -818,4 +743,463 @@ body {
     .tutorial-hero-image {
         transform: none;
     }
+}
+
+.tutorial-page {
+    background: var(--paper)
+}
+
+.tutorial-hero {
+    position: relative;
+    min-height: min(720px, calc(100vh - 76px));
+    display: grid;
+    align-items: end;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden
+}
+
+.tutorial-hero::after {
+    content: "MODEL RIPPING GUIDE";
+    position: absolute;
+    right: var(--gutter);
+    top: 2rem;
+    z-index: 3;
+    color: rgba(255, 255, 255, .68);
+    font: 400 .65rem "IBM Plex Mono", monospace;
+    letter-spacing: .12em
+}
+
+.tutorial-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: none;
+    transform: none
+}
+
+.tutorial-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, .96) 0, rgba(0, 0, 0, .5) 48%, rgba(0, 0, 0, .12) 100%)
+}
+
+.tutorial-hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(var(--page), 100%);
+    max-width: none;
+    margin: 0 auto;
+    padding: clamp(8rem, 18vw, 15rem) var(--gutter) clamp(3rem, 6vw, 5rem)
+}
+
+.tutorial-back-link {
+    display: inline-flex;
+    margin: 0 0 2rem;
+    padding: 0 0 .25rem;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .45);
+    border-radius: 0;
+    color: #ddd;
+    font: 400 .67rem "IBM Plex Mono", monospace;
+    letter-spacing: .07em;
+    text-decoration: none;
+    text-transform: uppercase
+}
+
+.tutorial-back-link:hover {
+    background: none;
+    color: #fff
+}
+
+.tutorial-meta {
+    gap: .35rem;
+    margin-bottom: 1.25rem
+}
+
+.tutorial-pill {
+    min-height: 0;
+    padding: .32rem .45rem;
+    border: 1px solid rgba(255, 255, 255, .38);
+    border-radius: 0;
+    background: rgba(0, 0, 0, .55) !important;
+    color: #eee !important;
+    font: 400 .63rem "IBM Plex Mono", monospace;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    backdrop-filter: none
+}
+
+.tutorial-hero h1 {
+    max-width: 15ch;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 520;
+    letter-spacing: -.075em;
+    line-height: .86
+}
+
+.tutorial-hero-content>p {
+    max-width: 650px;
+    margin: 1.5rem 0 0;
+    padding-left: 1rem;
+    border-left: 1px solid rgba(255, 255, 255, .4);
+    color: #b8b8b4;
+    font-size: clamp(1rem, 1.3vw, 1.18rem);
+    font-weight: 420;
+    line-height: 1.6
+}
+
+.tutorial-layout {
+    width: min(var(--page), 100%);
+    max-width: none;
+    margin: 0 auto;
+    padding: var(--space) var(--gutter);
+    grid-template-columns: minmax(190px, .34fr) minmax(0, 1fr);
+    gap: clamp(3rem, 8vw, 8rem)
+}
+
+.tutorial-content {
+    counter-reset: tutorial-section;
+    width: min(880px, calc(100% - 2 * var(--gutter)));
+    max-width: none;
+    margin: 0 auto;
+    padding: clamp(4rem, 8vw, 8rem) 0;
+    color: var(--muted)
+}
+
+.tutorial-layout .tutorial-content {
+    width: 100%;
+    margin: 0;
+    padding: 0
+}
+
+.tutorial-sidebar-card,
+.tutorial-facts {
+    padding: 1rem 0;
+    background: none;
+    border: 0;
+    border-top: 1px solid var(--line);
+    border-radius: 0
+}
+
+.tutorial-sidebar-card h2 {
+    color: var(--quiet);
+    font: 400 .65rem "IBM Plex Mono", monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.tutorial-sidebar-card a {
+    padding: .55rem 0;
+    background: none;
+    border-radius: 0;
+    color: var(--muted);
+    font-size: .9rem
+}
+
+.tutorial-sidebar-card a:hover {
+    padding-left: .5rem;
+    background: none;
+    color: var(--ink)
+}
+
+.tutorial-section {
+    counter-increment: tutorial-section;
+    position: relative;
+    margin: 0;
+    padding: clamp(3.5rem, 7vw, 6.5rem) 0;
+    border-top: 1px solid var(--line)
+}
+
+.tutorial-section:first-child {
+    border-top: 0;
+    padding-top: 0
+}
+
+.tutorial-section:last-child {
+    padding-bottom: 0
+}
+
+.tutorial-section::before {
+    content: "SECTION / " counter(tutorial-section, decimal-leading-zero);
+    display: block;
+    margin-bottom: 1.5rem;
+    color: var(--quiet);
+    font: 400 .65rem "IBM Plex Mono", monospace;
+    letter-spacing: .1em
+}
+
+.tutorial-updated {
+    color: var(--quiet) !important;
+    font: 400 .65rem "IBM Plex Mono", monospace !important;
+    letter-spacing: .07em;
+    text-transform: uppercase
+}
+
+.tutorial-intro {
+    max-width: 38ch;
+    color: var(--ink) !important;
+    font-size: clamp(1.4rem, 2.3vw, 2rem) !important;
+    font-weight: 450;
+    letter-spacing: -.03em;
+    line-height: 1.35 !important
+}
+
+.tutorial-content h2 {
+    max-width: 15ch;
+    margin: 0 0 1.5rem;
+    color: var(--ink);
+    font-size: clamp(2.3rem, 5vw, 4.5rem);
+    font-weight: 520;
+    letter-spacing: -.065em;
+    line-height: .92
+}
+
+.tutorial-content h3 {
+    margin: 2.5rem 0 1rem;
+    color: var(--ink);
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-weight: 600;
+    letter-spacing: -.035em
+}
+
+.tutorial-content p {
+    color: var(--muted);
+    font-size: 1.04rem;
+    line-height: 1.75
+}
+
+.tutorial-content strong {
+    color: var(--ink);
+    font-weight: 650
+}
+
+.tutorial-content a {
+    text-underline-offset: 4px
+}
+
+.tutorial-content ul,
+.tutorial-content ol {
+    color: var(--muted)
+}
+
+.tutorial-learn-box,
+.requirement-card,
+.tutorial-note,
+.tutorial-warning,
+.tutorial-content details,
+.tutorial-content pre {
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    box-shadow: none
+}
+
+.tutorial-learn-box {
+    margin-top: 2rem;
+    padding: 1.5rem
+}
+
+.tutorial-learn-box h2 {
+    max-width: none;
+    font: 400 .68rem "IBM Plex Mono", monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.requirements-grid {
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line)
+}
+
+.requirement-card {
+    padding: 1.5rem;
+    border-top: 0;
+    border-left: 0
+}
+
+.tutorial-steps {
+    gap: 0;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--line)
+}
+
+.tutorial-steps li {
+    min-height: 68px;
+    padding: 1.1rem 1rem 1.1rem 4.5rem;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    color: var(--muted);
+    box-shadow: none
+}
+
+.tutorial-steps li::before {
+    left: 0;
+    top: 1.1rem;
+    width: 2.4rem;
+    height: auto;
+    display: block;
+    background: none;
+    border-radius: 0;
+    color: var(--quiet);
+    font: 400 .67rem "IBM Plex Mono", monospace;
+    letter-spacing: .08em
+}
+
+.tutorial-steps li::after {
+    content: "";
+    position: absolute;
+    left: 3.25rem;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--line)
+}
+
+.tutorial-note,
+.tutorial-warning {
+    margin: 1.5rem 0;
+    padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+    color: var(--muted);
+    border-left: 3px solid var(--ink)
+}
+
+.tutorial-note::before,
+.tutorial-warning::before {
+    position: absolute;
+    margin-left: -2.4rem;
+    color: var(--quiet);
+    font: 400 .65rem "IBM Plex Mono", monospace
+}
+
+.tutorial-note {
+    position: relative
+}
+
+.tutorial-warning {
+    position: relative;
+    background: var(--ink);
+    border-color: var(--ink);
+    color: #444
+}
+
+.tutorial-note::before {
+    content: "i"
+}
+
+.tutorial-warning::before {
+    content: "!"
+}
+
+.tutorial-warning strong {
+    color: var(--paper)
+}
+
+.tutorial-content details {
+    padding: 1.2rem
+}
+
+.tutorial-content summary {
+    color: var(--ink);
+    font-weight: 600
+}
+
+.tutorial-figure img {
+    border: 1px solid var(--line);
+    border-radius: 0;
+    filter: none
+}
+
+.tutorial-figure figcaption {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .67rem;
+    letter-spacing: .04em
+}
+
+.tutorial-next {
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line)
+}
+
+.tutorial-next a {
+    border: 0;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    background: transparent
+}
+
+.tutorial-next a:hover {
+    background: var(--ink);
+    color: var(--paper);
+    transform: none
+}
+
+@media(max-width:900px) {
+    .tutorial-layout {
+        grid-template-columns: 1fr
+    }
+
+    .tutorial-sidebar {
+        position: static
+    }
+
+    .tutorial-sidebar-card nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .35rem
+    }
+
+    .tutorial-sidebar-card a {
+        padding: .4rem .55rem;
+        border: 1px solid var(--line)
+    }
+
+    .tutorial-content {
+        width: calc(100% - 2 * var(--gutter))
+    }
+}
+
+@media(max-width:600px) {
+    .tutorial-hero {
+        min-height: 560px
+    }
+
+    .tutorial-hero-content {
+        padding-bottom: 2.5rem
+    }
+
+    .tutorial-hero h1 {
+        font-size: clamp(2.8rem, 15vw, 4.7rem)
+    }
+
+    .tutorial-content {
+        padding: 4.5rem 0
+    }
+
+    .requirements-grid,
+    .tutorial-next {
+        grid-template-columns: 1fr
+    }
+
+    .tutorial-steps li {
+        padding-left: 3.8rem
+    }
+
+    .tutorial-steps li::after {
+        left: 2.8rem
+    }
+}
+
+.tutorial-hero::after {
+    inset: 2rem var(--gutter) auto auto;
+    height: auto;
+    background: none
 }

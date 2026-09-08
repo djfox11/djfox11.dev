@@ -1,7 +1,7 @@
 .site-footer {
     margin-top: 5rem;
     background: #070707;
-    border-top: 1px solid rgba(255,255,255,0.09);
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
     color: #b8b8b8;
 }
 
@@ -74,7 +74,7 @@
 
 .footer-section a:focus-visible,
 .footer-logo:focus-visible {
-    outline: 2px solid rgba(255,255,255,0.35);
+    outline: 2px solid rgba(255, 255, 255, 0.35);
     outline-offset: 4px;
     border-radius: 6px;
 }
@@ -88,7 +88,7 @@
     justify-content: space-between;
     gap: 1rem;
 
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footer-bottom p {
@@ -151,5 +151,137 @@
 
     .footer-bottom {
         padding: 1rem 1.25rem 1.2rem;
+    }
+}
+
+.site-footer {
+    margin-top: 0;
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    color: var(--muted)
+}
+
+.footer-inner {
+    width: min(var(--page), 100%);
+    max-width: none;
+    margin: 0 auto;
+    padding: clamp(3.5rem, 7vw, 6.5rem) var(--gutter);
+    display: grid;
+    grid-template-columns: minmax(280px, 1.5fr) repeat(2, minmax(140px, .5fr));
+    gap: 3rem;
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line)
+}
+
+.footer-brand {
+    max-width: 520px
+}
+
+.footer-logo {
+    margin: 0;
+    color: var(--ink);
+    font-size: clamp(2rem, 4vw, 4.2rem);
+    font-weight: 520;
+    letter-spacing: -.065em;
+    line-height: .9
+}
+
+.footer-brand p {
+    max-width: 440px;
+    margin: 1.5rem 0 0;
+    color: var(--muted)
+}
+
+.footer-section {
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--line)
+}
+
+.footer-section h2 {
+    margin: 0 0 1.5rem;
+    color: var(--quiet);
+    font: 400 .65rem "IBM Plex Mono", monospace;
+    letter-spacing: .1em
+}
+
+.footer-section ul {
+    gap: .25rem
+}
+
+.footer-section a {
+    position: relative;
+    display: inline-block;
+    padding: .18rem 0;
+    color: var(--muted);
+    font-size: 1rem;
+    transition: color .18s
+}
+
+.footer-section a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform .3s var(--ease)
+}
+
+.footer-section a:hover {
+    color: var(--ink)
+}
+
+.footer-section a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left
+}
+
+.footer-bottom {
+    width: min(var(--page), 100%);
+    max-width: none;
+    margin: 0 auto;
+    padding: 1.1rem var(--gutter);
+    border-top: 1px solid var(--line);
+    color: var(--quiet);
+    font: 400 .65rem "IBM Plex Mono", monospace;
+    letter-spacing: .08em;
+    text-transform: uppercase
+}
+
+.footer-bottom p {
+    color: inherit;
+    font-size: inherit
+}
+
+@media(max-width:760px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .footer-brand {
+        grid-column: 1/-1
+    }
+
+    .footer-section {
+        padding: 1.25rem 0 0;
+        border-top: 1px solid var(--line);
+        border-left: 0
+    }
+}
+
+@media(max-width:440px) {
+    .footer-inner {
+        grid-template-columns: 1fr
+    }
+
+    .footer-brand {
+        grid-column: 1
+    }
+
+    .footer-section {
+        padding-top: 1rem
     }
 }

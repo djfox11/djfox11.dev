@@ -22,7 +22,7 @@
     --badge-card-radius: 10px;
 
     background: #1a1919;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: var(--badge-card-radius);
     overflow: hidden;
     position: relative;
@@ -30,7 +30,7 @@
 }
 
 .badge-card:hover {
-    border-color: rgba(255,255,255,0.2);
+    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-3px);
 }
 
@@ -76,7 +76,7 @@
 }
 
 .badge-platform {
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     color: #e0e0e0;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -135,7 +135,7 @@
 }
 
 .badge-card-footer {
-    border-top: 1px solid rgba(255,255,255,0.151);
+    border-top: 1px solid rgba(255, 255, 255, 0.151);
     padding: 0.625rem 1rem;
     display: flex;
     align-items: center;
@@ -149,3 +149,221 @@
 .badge-card-footer-arrow {
     color: #928f8f;
 }
+.cards-grid-container {
+    counter-reset: guide-card;
+    width: min(var(--page), 100%);
+    max-width: none;
+    margin: 0 auto;
+    padding: 0 var(--gutter) var(--space);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--line);
+    border-left: 1px solid var(--line);
+    justify-content: stretch
+}
+
+.badge-card {
+    counter-increment: guide-card;
+    --badge-card-radius: 0;
+    position: relative;
+    background: transparent;
+    border: 0;
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    overflow: hidden;
+    transition: background .25s
+}
+
+.badge-card::before {
+    content: "0" counter(guide-card);
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 4;
+    color: #fff;
+    font: 400 .65rem "IBM Plex Mono", monospace;
+    letter-spacing: .08em;
+    text-shadow: 0 1px 8px #000
+}
+
+.badge-card:hover {
+    background: var(--soft);
+    border-color: var(--line);
+    transform: none
+}
+
+.badge-card-link {
+    height: 100%
+}
+
+.badge-card-image-wrap {
+    aspect-ratio: 4/5;
+    background: #181818
+}
+
+.badge-card-image {
+    filter: none;
+    transition: filter .45s, transform .6s var(--ease)
+}
+
+.badge-card:hover .badge-card-image {
+    filter: none;
+    transform: scale(1.025)
+}
+
+.badge-card-image-wrap::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 55%, rgba(0, 0, 0, .55));
+    pointer-events: none
+}
+
+.badge-card-badges {
+    top: auto;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 2;
+    gap: .35rem
+}
+
+.badge {
+    padding: .3rem .45rem;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 0;
+    background: rgba(0, 0, 0, .72) !important;
+    color: #eee !important;
+    font: 400 .62rem "IBM Plex Mono", monospace;
+    letter-spacing: .07em;
+    line-height: 1;
+    text-transform: uppercase;
+    backdrop-filter: none
+}
+
+.badge-difficulty::before {
+    content: "LEVEL / ";
+    color: #8b8b8b
+}
+
+.badge-card-content {
+    padding: 1.25rem;
+    gap: .8rem
+}
+
+.badge-card-title {
+    color: var(--ink);
+    font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+    font-weight: 550;
+    letter-spacing: -.045em;
+    line-height: 1.05
+}
+
+.badge-card-description {
+    color: var(--muted);
+    font-size: .95rem;
+    line-height: 1.55
+}
+
+.badge-card-tools {
+    gap: .4rem
+}
+
+.tool-tag {
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+    color: var(--quiet);
+    font: 400 .64rem "IBM Plex Mono", monospace;
+    letter-spacing: .06em;
+    text-transform: uppercase
+}
+
+.tool-tag::before {
+    content: "DEV / ";
+    color: var(--muted)
+}
+
+.badge-card-footer {
+    margin-top: auto;
+    padding: .85rem 1.25rem;
+    border-top: 1px solid var(--line);
+    color: var(--quiet);
+    font: 400 .67rem "IBM Plex Mono", monospace;
+    letter-spacing: .07em;
+    text-transform: uppercase
+}
+
+.badge-card-footer-arrow {
+    color: var(--muted);
+    transition: transform .3s var(--ease)
+}
+
+.badge-card:hover .badge-card-footer-arrow {
+    transform: translate(3px, -3px)
+}
+
+.badge-card.is-hidden {
+    display: none
+}
+
+@media(max-width:1100px) {
+    .cards-grid-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+    }
+}
+
+@media(max-width:780px) {
+    .cards-grid-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+
+    .badge-card-description {
+        display: none
+    }
+}
+
+@media(max-width:520px) {
+    .cards-grid-container {
+        grid-template-columns: 1fr
+    }
+
+    .badge-card-image-wrap {
+        aspect-ratio: 16/11
+    }
+
+    .badge-card-description {
+        display: block
+    }
+}
+.badge-card-image-wrap {
+    aspect-ratio: 2/3
+}
+
+.badge-card-image {
+    object-fit: contain;
+    transform: none;
+    transition: filter .35s ease
+}
+
+.badge-card:hover .badge-card-image {
+    filter: none;
+    transform: none
+}
+
+@media(max-width:520px) {
+    .badge-card-image-wrap {
+        aspect-ratio: 2/3
+    }
+}
+/* Separate the artwork into readable entries without cropping game covers. */
+.cards-grid-container { gap: 1.5rem; border: 0; }
+.badge-card { background: var(--raised); border: 1px solid var(--line); }
+.badge-card::before { content: counter(guide-card, decimal-leading-zero); }
+.badge-card-content { padding: 1.3rem; }
+.badge-card-footer-label, .badge-card-footer-arrow { color: var(--muted); }
+.badge-card-upcoming:hover { background: var(--raised); }
+.badge-card-upcoming .badge-card-footer-label { color: var(--quiet); }
