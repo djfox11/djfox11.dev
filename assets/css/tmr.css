@@ -98,13 +98,6 @@
     color: var(--paper);
 }
 
-.tmr-mark::before,
-.tmr-mark::after {
-    content: "";
-    position: absolute;
-    background: rgba(8, 8, 8, 0.15);
-}
-
 .tmr-mark::before {
     inset: 0 auto 0 50%;
     width: 1px;

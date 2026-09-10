@@ -16,53 +16,30 @@
     <div id="site-header"></div>
 
     <section class="tutorial-hero">
-    <img
-        class="tutorial-hero-image"
-        src="/assets/images/tutorial-headers/smo.png"
-        alt="Super Mario Odyssey"
-    >
+        <img class="tutorial-hero-image" src="/assets/images/tutorial-headers/smo.webp" alt="Super Mario Odyssey">
 
-    <div class="tutorial-hero-overlay"></div>
+        <div class="tutorial-hero-overlay"></div>
 
-    <div class="tutorial-hero-content">
-        <a href="/tutorials/index.html" class="tutorial-back-link">← All tutorials</a>
+        <div class="tutorial-hero-content">
+            <a href="/tutorials/index.html" class="tutorial-back-link">← All tutorials</a>
 
-        <div class="tutorial-meta">
-            <span class="tutorial-pill">Switch</span>
-            <span class="tutorial-pill tutorial-pill-easy">Easy</span>
-            <span class="tutorial-pill">Nintendo</span>
+            <h1>Super Mario Odyssey Model Ripping Tutorial</h1>
+
+            <p>
+                I'll show you how to extract Odyssey models, bring them into Blender, and prepare them for submission.
+            </p>
         </div>
-
-        <h1>Super Mario Odyssey Model Ripping Tutorial</h1>
-
-        <p>
-            I'll show you how to extract Odyssey models, bring them into Blender, and prepare them for submission.
-        </p>
-    </div>
-</section>
+    </section>
 
     <article class="tutorial-content">
 
         <section id="overview" class="tutorial-section">
-            <p class="tutorial-updated">Tutorial last updated: 28/05/2023</p>
-
-            <p class="tutorial-intro">
-                We'll use Switch Toolbox to extract models from <strong>Super Mario Odyssey</strong>, then bring them into Blender to set up textures. I'll also cover checking the model before you submit it.
-            </p>
+            <p class="tutorial-updated">Tutorial last updated: 10/09/2026</p>
 
             <div class="tutorial-warning">
                 <strong>Important:</strong>
-                You'll need a legally obtained dump of the game and Yuzu or Ryujinx already set up. This guide doesn't cover getting game files or setting up an emulator.
-            </div>
-
-            <div class="tutorial-learn-box">
-                <h2>What we'll cover</h2>
-                <ul>
-                    <li>How to extract the base game files</li>
-                    <li>How to import and convert ripped models</li>
-                    <li>How to set up texture maps in Blender</li>
-                    <li>How to prepare models for upload</li>
-                </ul>
+                You'll need a legally obtained dump of the game and have an emulator set up. This guide doesn't cover
+                getting game files or setting up an emulator.
             </div>
         </section>
 
@@ -82,17 +59,11 @@
                 <div class="requirement-card">
                     <h3>Software</h3>
                     <ul>
-                        <li>Yuzu or Ryujinx</li>
+                        <li>Any Switch emulator with dumping support</li>
                         <li>Switch Toolbox</li>
                         <li>Blender, or another modelling program of your choice</li>
-                        <li>Model Checker</li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="tutorial-note">
-                <strong>Note:</strong>
-                Model Checker can catch common problems, but passing its checks doesn't guarantee your submission will be approved.
             </div>
         </section>
 
@@ -122,7 +93,8 @@
             <h2>Extracting and converting the models</h2>
 
             <p>
-                Next, we'll use <strong>Switch Toolbox</strong> to find the model in the extracted game files and export it as a Collada file.
+                Next, we'll use <strong>Switch Toolbox</strong> to find the model in the extracted game files and export
+                it as a Collada file.
             </p>
 
             <ol class="tutorial-steps">
@@ -162,12 +134,6 @@
                     <strong>.dae</strong> file.
                 </li>
             </ol>
-
-            <div class="tutorial-note">
-                <strong>Tip:</strong>
-                If you only want to use the model in another project, you can stop after exporting it.
-                If you're making submission icons, carry on with the Blender steps below.
-            </div>
         </section>
 
         <section id="importing-blender" class="tutorial-section">
@@ -184,80 +150,9 @@
                     Select the model you exported earlier.
                 </li>
                 <li>
-                    The imported model will probably be very large.
-                </li>
-                <li>
-                    Select the armature in the Outliner and scale the model down to a reasonable size.
+                    The imported model will probably be very large. Select the armature in the Outliner and scale the
+                    model down to a reasonable size.
                     I usually scale it to <strong>0.01</strong>.
-                </li>
-            </ol>
-
-            <div class="tutorial-warning">
-                <strong>Submission note:</strong>
-                Only follow the material setup steps if you're making icons or preview renders.
-                Do not export the final submission model with these temporary texture map adjustments applied.
-            </div>
-        </section>
-
-        <section id="texture-maps" class="tutorial-section">
-            <h2>Setting up texture maps</h2>
-
-            <p>
-                Switch to Blender's <strong>Shading</strong> workspace to assign the exported textures and see how they look.
-            </p>
-
-            <ol class="tutorial-steps">
-                <li>
-                    Add a new <strong>Image Texture</strong> node and select the grey roughness texture.
-                </li>
-                <li>
-                    Plug the <strong>Color</strong> output of the roughness texture into the
-                    <strong>Roughness</strong> input of the <strong>Principled BSDF</strong> node.
-                </li>
-                <li>
-                    Change the roughness texture’s <strong>Color Space</strong> to
-                    <strong>Non-Color</strong>.
-                </li>
-                <li>
-                    If metallic or emission textures are present, repeat the same general process
-                    for those maps.
-                </li>
-                <li>
-                    Add another <strong>Image Texture</strong> node and select the purple normal map.
-                </li>
-                <li>
-                    Add a <strong>Normal Map</strong> node.
-                </li>
-                <li>
-                    Plug the normal map texture’s <strong>Color</strong> output into the
-                    <strong>Color</strong> input of the <strong>Normal Map</strong> node.
-                </li>
-                <li>
-                    Plug the <strong>Normal</strong> output of the <strong>Normal Map</strong> node
-                    into the <strong>Normal</strong> input of the <strong>Principled BSDF</strong>.
-                </li>
-            </ol>
-        </section>
-
-        <section id="preparing-submission" class="tutorial-section">
-            <h2>Preparing the model for submission</h2>
-
-            <ol class="tutorial-steps">
-                <li>
-                    Once the model has been scaled to a reasonable size, go to
-                    <strong>File &gt; Export &gt; Collada (.dae)</strong>.
-                </li>
-                <li>
-                    Leave the export settings as they are and click <strong>Export</strong>.
-                </li>
-                <li>
-                    Open the exported <strong>.dae</strong> file in Model Checker.
-                </li>
-                <li>
-                    If everything has gone well, Model Checker should report no major issues.
-                </li>
-                <li>
-                    If Model Checker reports a problem, read its message to see what needs fixing.
                 </li>
             </ol>
         </section>
@@ -274,73 +169,13 @@
                 </p>
                 <p>
                     You usually don't need to find and extract these texture packages yourself.
-                    Switch Toolbox should find and extract the required textures automatically.
+                    Switch Toolbox should find and extract the required textures automatically onced loaded.
                 </p>
             </details>
         </section>
-
-        <section id="final-words" class="tutorial-section">
-            <h2>That's it</h2>
-
-            <p>
-                You should now have an extracted Odyssey model that you've converted and checked.
-            </p>
-
-            <p>
-                If you're stuck, check the FAQ above, your file paths, and whether you exported the right <strong>.bfres</strong> file.
-            </p>
-        </section>
-
     </article>
 
-    <footer class="site-footer">
-        <div class="footer-inner">
-
-            <section class="footer-brand">
-                <a href="/index.html" class="footer-logo">djfox11.com</a>
-                <p>
-                    My game model tutorials, tools, and notes.
-                </p>
-            </section>
-
-            <nav class="footer-section" aria-label="Footer site navigation">
-                <h2>Site</h2>
-                <ul>
-                    <li><a href="/index.html">Home</a></li>
-                    <li><a href="/projects/index.html">Projects</a></li>
-                    <li><a href="/tutorials/index.html">Tutorials</a></li>
-                    <li><a href="/tmr/index.html">TMR</a></li>
-                    <li><a href="/contact/index.html">Contact</a></li>
-                </ul>
-            </nav>
-
-            <section class="footer-section">
-                <h2>Topics</h2>
-                <ul>
-                    <li><a href="/tutorials/index.html">Model ripping</a></li>
-                    <li><a href="/projects/index.html">Web projects</a></li>
-                    <li><a href="/tmr/index.html">The Models Resource</a></li>
-                    <li><a href="/tutorials/index.html">Game tools</a></li>
-                </ul>
-            </section>
-
-            <section class="footer-section">
-                <h2>Socials</h2>
-                <ul>
-                    <li><a href="https://www.models-resource.com/" target="_blank" rel="noopener noreferrer">The Models
-                            Resource</a></li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">YouTube</a></li>
-                    <li><a href="#" target="_blank" rel="noopener noreferrer">Discord</a></li>
-                </ul>
-            </section>
-
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2026 djfox11</p>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
     <script src="/assets/js/includes.js"></script>
 </body>
 

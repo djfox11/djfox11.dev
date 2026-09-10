@@ -54,7 +54,8 @@ body {
     display: block;
 
     transform: scale(1.015);
-    filter: saturate(1.05) contrast(1.05);
+    filter: constrast(1.05) saturate(1.05);
+    opacity: 0.3;
 }
 
 .tutorial-hero-image-left {
@@ -318,15 +319,11 @@ body {
 .tutorial-updated {
     width: fit-content;
     margin: 0 0 1rem;
-
-    color: #cfcfcf;
-    background: rgba(255, 255, 255, 0.055);
-    border: 1px solid rgba(255, 255, 255, 0.105);
-    border-radius: 999px;
-    padding: 0.45rem 0.78rem;
-
-    font-size: 0.9rem;
+    color: #fff;
     font-weight: 700;
+    font: 400 .81rem "IBM Plex Mono", monospace !important;
+    letter-spacing: .07em;
+    text-transform: uppercase
 }
 
 .tutorial-intro {
@@ -496,9 +493,9 @@ body {
 
 .tutorial-note,
 .tutorial-warning {
-    margin: 1.25rem 0;
+    margin: 0;
     border-radius: 16px;
-    padding: 1rem 1.1rem;
+    padding: 1rem 1rem;
 
     font-size: 1rem;
     line-height: 1.68;
@@ -758,17 +755,6 @@ body {
     overflow: hidden
 }
 
-.tutorial-hero::after {
-    content: "MODEL RIPPING GUIDE";
-    position: absolute;
-    right: var(--gutter);
-    top: 2rem;
-    z-index: 3;
-    color: rgba(255, 255, 255, .68);
-    font: 400 .65rem "IBM Plex Mono", monospace;
-    letter-spacing: .12em
-}
-
 .tutorial-hero-image {
     position: absolute;
     inset: 0;
@@ -923,22 +909,6 @@ body {
     padding-bottom: 0
 }
 
-.tutorial-section::before {
-    content: "SECTION / " counter(tutorial-section, decimal-leading-zero);
-    display: block;
-    margin-bottom: 1.5rem;
-    color: var(--quiet);
-    font: 400 .65rem "IBM Plex Mono", monospace;
-    letter-spacing: .1em
-}
-
-.tutorial-updated {
-    color: var(--quiet) !important;
-    font: 400 .65rem "IBM Plex Mono", monospace !important;
-    letter-spacing: .07em;
-    text-transform: uppercase
-}
-
 .tutorial-intro {
     max-width: 38ch;
     color: var(--ink) !important;
@@ -1065,17 +1035,9 @@ body {
 .tutorial-note,
 .tutorial-warning {
     margin: 1.5rem 0;
-    padding: 1.2rem 1.2rem 1.2rem 3.5rem;
+    padding: 1.75rem;
     color: var(--muted);
     border-left: 3px solid var(--ink)
-}
-
-.tutorial-note::before,
-.tutorial-warning::before {
-    position: absolute;
-    margin-left: -2.4rem;
-    color: var(--quiet);
-    font: 400 .65rem "IBM Plex Mono", monospace
 }
 
 .tutorial-note {
@@ -1091,10 +1053,6 @@ body {
 
 .tutorial-note::before {
     content: "i"
-}
-
-.tutorial-warning::before {
-    content: "!"
 }
 
 .tutorial-warning strong {

@@ -168,7 +168,7 @@
     padding-block: 1.2rem;
     border-block: 1px solid var(--line);
     color: var(--quiet);
-    font: .65rem/1.5 "IBM Plex Mono", monospace;
+    font: .83rem/1.5 "IBM Plex Mono", monospace;
     text-transform: uppercase;
     letter-spacing: .07em;
 }

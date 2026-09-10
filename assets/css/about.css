@@ -816,7 +816,7 @@
 
 .about-game-item span {
     color: var(--muted);
-    font: 400 .62rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .04em;
     text-transform: uppercase
 }
@@ -856,7 +856,7 @@
 
 .music-display-copy p {
     font-family: "IBM Plex Mono", monospace;
-    font-size: .7rem;
+    font-size: var(--mono-meta-size);
     letter-spacing: .04em;
     text-transform: uppercase
 }
@@ -881,8 +881,8 @@
     right: 0;
     top: 50%;
     color: var(--quiet);
-    font: 400 .58rem "IBM Plex Mono", monospace;
-    letter-spacing: .08em;
+    font: 400 var(--mono-action-size) "IBM Plex Mono", monospace;
+    letter-spacing: .05em;
     transform: translateY(-50%)
 }
 
@@ -919,7 +919,7 @@
 
 .music-item small {
     color: var(--quiet);
-    font: 400 .62rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .035em
 }
 
@@ -1126,7 +1126,7 @@
     justify-content: space-between;
     margin-top: .55rem;
     color: var(--quiet);
-    font: 400 .58rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .06em;
 }
 

@@ -10,6 +10,16 @@ const pageUrlInput = document.getElementById("page-url");
 
 let toastTimeout;
 
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Tab") {
+        form?.classList.add("is-keyboard-nav");
+    }
+});
+
+document.addEventListener("pointerdown", () => {
+    form?.classList.remove("is-keyboard-nav");
+});
+
 function showToast(message, type = "info", duration = 4000) {
     const toast = document.getElementById("toast");
 

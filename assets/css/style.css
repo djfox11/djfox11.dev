@@ -270,6 +270,8 @@ body {
     --accent: #ffffff;
     --line: rgba(244, 244, 239, .18);
     --line-strong: rgba(244, 244, 239, .38);
+    --mono-meta-size: .75rem;
+    --mono-action-size: .8125rem;
     --page: 1480px;
     --gutter: clamp(1.25rem, 4vw, 4rem);
     --space: clamp(4rem, 8vw, 8.5rem);
@@ -351,8 +353,8 @@ a {
     left: var(--gutter);
     bottom: 7px;
     color: var(--quiet);
-    font: 400 .58rem "IBM Plex Mono", monospace;
-    letter-spacing: .11em;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
+    letter-spacing: .05em;
     pointer-events: none
 }
 
@@ -395,7 +397,7 @@ a {
     border-right: 1px solid var(--line);
     border-radius: 0;
     color: var(--muted);
-    font: 400 clamp(.66rem, .75vw, .76rem) "IBM Plex Mono", monospace;
+    font: 400 clamp(.75rem, .78vw, var(--mono-action-size)) "IBM Plex Mono", monospace;
     letter-spacing: .035em;
     line-height: 1.2;
     text-decoration: none;

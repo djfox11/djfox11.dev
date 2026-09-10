@@ -3,27 +3,58 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="Tools and Blender extensions by djfox11, including Odyssey Toolkit for importing and reconstructing Super Mario Odyssey assets in Blender.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>djfox11 | Projects</title>
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/font.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
     <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/projects.css">
     <link rel="stylesheet" href="/assets/css/mobile.css">
 </head>
 
 <body style="background: #000;">
     <div id="site-header"></div>
 
-    <main>
-        <section class="home-cta">
-            <p class="home-eyebrow">Tools / scripts / experiments</p>
+    <main class="projects-page">
+        <header class="projects-header">
+            <p class="projects-kicker">Tools / scripts / experiments</p>
             <h1>Projects</h1>
-            <p>I haven't written up my projects here yet. You can find my tools and scripts on GitHub, or head to the tutorials for help with extracting models and setting them up in Blender.</p>
-            <div class="home-actions">
-                <a class="home-button home-button-primary" href="https://github.com/djfox11">View my GitHub <span class="referral-arrow" aria-hidden="true">↗</span></a>
-                <a class="home-text-link" href="/tutorials/">Browse tutorials <span class="referral-arrow" aria-hidden="true">↗</span></a>
+            <p>Tools I build to make game-asset research and Blender work less repetitive.</p>
+        </header>
+
+        <section class="projects-list" aria-labelledby="projects-list-title">
+            <div class="projects-list-header">
+                <p id="projects-list-title"></p>
+                <span></span>
             </div>
+
+            <article class="project-entry">
+                <div class="project-entry-lead">
+                    <img class="project-entry-image" src="/assets/images/projects/odyssey-toolkit.webp" alt="Mario looking up at Cappy" width="1920" height="1920">
+                </div>
+
+                <div class="project-entry-content">
+                    <h2>Odyssey Toolkit</h2>
+                    <p class="project-entry-description">
+                        Reconstruct and inspect Super Mario Odyssey content directly in Blender. Import kingdom stages and standalone assets with rigs, animations, cameras, materials, and lighting.
+                    </p>
+
+                    <ul class="project-entry-features" aria-label="Odyssey Toolkit features">
+                        <li>Stage and scenario reconstruction</li>
+                        <li>Standalone model importing</li>
+                        <li>Skeletal, material and camera animations</li>
+                        <li>Materials, lighting and rigging</li>
+                    </ul>
+
+                    <div class="project-entry-footer">
+                        <a class="project-entry-link" href="https://github.com/djfox11/Odyssey-Toolkit" target="_blank" rel="noopener noreferrer">
+                            View on GitHub <span class="referral-arrow" aria-hidden="true">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
         </section>
     </main>
 

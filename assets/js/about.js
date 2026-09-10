@@ -12,144 +12,513 @@ const musicDuration = document.getElementById("music-duration");
 const musicPlayer = document.querySelector(".music-player");
 const musicDisplay = document.querySelector(".music-display");
 
-if (musicAudio && musicStatus && musicToggle && musicProgress && musicProgressFill && musicCurrentTime && musicDuration && musicPlayer && musicDisplay && musicItems.length) {
-    let selectedItem = musicItems.find((item) => item.classList.contains("is-active")) || musicItems[0];
+if (
+    musicAudio &&
+    musicStatus &&
+    musicToggle &&
+    musicProgress &&
+    musicProgressFill &&
+    musicCurrentTime &&
+    musicDuration &&
+    musicPlayer &&
+    musicDisplay &&
+    musicItems.length
+) {
+    let selectedItem =
+        musicItems.find((item) => item.classList.contains("is-active")) ||
+        musicItems[0];
+
     let playRequest = 0;
     let coverChangeTimeout;
     let coverChangeRequest = 0;
+    let volumeAnimationFrame = null;
+
+    // ---------------------------------------------------------
+    // AUDIO SETTINGS
+    // ---------------------------------------------------------
+
+    const FADE_DURATION = 2; // seconds
+
+    /*
+        Loudness correction based on measured integrated LUFS.
+
+        Target: -10.83 LUFS (the quietest clip)
+
+        Nothing is boosted above its original level.
+        Louder tracks are simply attenuated during playback.
+    */
+    const trackGainDb = {
+        "apocalypsis-noctis.mp3": -4.51,
+        "find-the-flame.mp3": -2.53,
+        "hollow.mp3": -4.00,
+        "jenova-emergence.mp3": -2.36,
+        "one-winged-angel-rebirth.mp3": -2.79,
+        "press-start.mp3": -0.15,
+        "rainbow-road.mp3": -0.69,
+        "staff-roll.mp3": 0
+    };
+
+    function dbToVolume(db) {
+        return Math.pow(10, db / 20);
+    }
+
+    function getTrackFilename(item) {
+        const audioPath = item.dataset.audio || "";
+
+        // Remove query strings if present, then grab filename.
+        return audioPath
+            .split("?")[0]
+            .split("/")
+            .pop();
+    }
+
+    function getTrackVolume(item) {
+        const filename = getTrackFilename(item);
+        const gainDb = trackGainDb[filename] ?? 0;
+
+        return dbToVolume(gainDb);
+    }
+
+    // ---------------------------------------------------------
+    // SMOOTH FADE HANDLING
+    // ---------------------------------------------------------
+
+    function calculatePlaybackVolume() {
+        const targetVolume = getTrackVolume(selectedItem);
+        const currentTime = musicAudio.currentTime;
+        const duration = musicAudio.duration;
+
+        if (!Number.isFinite(duration) || duration <= 0) {
+            return targetVolume;
+        }
+
+        let fadeMultiplier = 1;
+
+        // Fade in over the first 2 seconds.
+        if (currentTime < FADE_DURATION) {
+            fadeMultiplier = currentTime / FADE_DURATION;
+        }
+
+        // Fade out over the final 2 seconds.
+        const timeRemaining = duration - currentTime;
+
+        if (timeRemaining < FADE_DURATION) {
+            fadeMultiplier = Math.min(
+                fadeMultiplier,
+                Math.max(0, timeRemaining / FADE_DURATION)
+            );
+        }
+
+        return Math.max(
+            0,
+            Math.min(1, targetVolume * fadeMultiplier)
+        );
+    }
+
+    function updatePlaybackVolume() {
+        musicAudio.volume = calculatePlaybackVolume();
+    }
+
+    function runVolumeAnimation() {
+        updatePlaybackVolume();
+
+        if (!musicAudio.paused && !musicAudio.ended) {
+            volumeAnimationFrame =
+                requestAnimationFrame(runVolumeAnimation);
+        } else {
+            volumeAnimationFrame = null;
+        }
+    }
+
+    function startVolumeAnimation() {
+        if (volumeAnimationFrame !== null) {
+            cancelAnimationFrame(volumeAnimationFrame);
+        }
+
+        volumeAnimationFrame =
+            requestAnimationFrame(runVolumeAnimation);
+    }
+
+    function stopVolumeAnimation() {
+        if (volumeAnimationFrame !== null) {
+            cancelAnimationFrame(volumeAnimationFrame);
+            volumeAnimationFrame = null;
+        }
+    }
+
+    // ---------------------------------------------------------
+    // TIME / TIMELINE
+    // ---------------------------------------------------------
 
     function formatTime(seconds) {
         if (!Number.isFinite(seconds)) return "0:00";
+
         const minutes = Math.floor(seconds / 60);
-        const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, "0");
+        const remainingSeconds = Math.floor(seconds % 60)
+            .toString()
+            .padStart(2, "0");
+
         return `${minutes}:${remainingSeconds}`;
     }
 
     function updateTimeline() {
-        const duration = Number.isFinite(musicAudio.duration) ? musicAudio.duration : 0;
-        const currentTime = Number.isFinite(musicAudio.currentTime) ? musicAudio.currentTime : 0;
-        const progress = duration ? (currentTime / duration) * 100 : 0;
+        const duration = Number.isFinite(musicAudio.duration)
+            ? musicAudio.duration
+            : 0;
+
+        const currentTime = Number.isFinite(musicAudio.currentTime)
+            ? musicAudio.currentTime
+            : 0;
+
+        const progress = duration
+            ? (currentTime / duration) * 100
+            : 0;
 
         musicProgressFill.style.width = `${progress}%`;
-        musicProgress.setAttribute("aria-valuenow", String(Math.round(progress)));
-        musicProgress.setAttribute("aria-valuetext", `${formatTime(currentTime)} of ${formatTime(duration)}`);
+
+        musicProgress.setAttribute(
+            "aria-valuenow",
+            String(Math.round(progress))
+        );
+
+        musicProgress.setAttribute(
+            "aria-valuetext",
+            `${formatTime(currentTime)} of ${formatTime(duration)}`
+        );
+
         musicCurrentTime.textContent = formatTime(currentTime);
         musicDuration.textContent = formatTime(duration);
     }
 
+    // ---------------------------------------------------------
+    // COVER TRANSITION
+    // ---------------------------------------------------------
+
     function changeCover(item) {
         const request = ++coverChangeRequest;
+
         window.clearTimeout(coverChangeTimeout);
         musicDisplay.classList.add("is-changing");
 
         coverChangeTimeout = window.setTimeout(() => {
             const revealCover = () => {
                 if (request !== coverChangeRequest) return;
-                requestAnimationFrame(() => musicDisplay.classList.remove("is-changing"));
+
+                requestAnimationFrame(() => {
+                    musicDisplay.classList.remove("is-changing");
+                });
             };
 
-            musicCover.addEventListener("load", revealCover, { once: true });
+            musicCover.addEventListener(
+                "load",
+                revealCover,
+                { once: true }
+            );
+
             musicCover.src = item.dataset.cover;
             musicCover.alt = `${item.dataset.source} cover art`;
-            if (musicCover.complete) revealCover();
+
+            if (musicCover.complete) {
+                revealCover();
+            }
         }, 180);
     }
 
+    // ---------------------------------------------------------
+    // PLAYER CONTROLS
+    // ---------------------------------------------------------
+
     function updateControls() {
-        const playing = !musicAudio.paused && !musicAudio.ended;
-        musicPlayer.classList.toggle("is-playing", playing);
-        musicToggle.setAttribute("aria-label", `${playing ? "Pause" : "Play"} ${selectedItem.dataset.title} clip`);
-        musicToggle.setAttribute("aria-pressed", String(playing));
+        const playing =
+            !musicAudio.paused &&
+            !musicAudio.ended;
+
+        musicPlayer.classList.toggle(
+            "is-playing",
+            playing
+        );
+
+        musicToggle.setAttribute(
+            "aria-label",
+            `${playing ? "Pause" : "Play"} ${selectedItem.dataset.title} clip`
+        );
+
+        musicToggle.setAttribute(
+            "aria-pressed",
+            String(playing)
+        );
+
         musicItems.forEach((item) => {
             const selected = item === selectedItem;
             const isPlaying = selected && playing;
-            item.classList.toggle("is-active", selected);
-            item.classList.toggle("is-playing", isPlaying);
-            item.setAttribute("aria-pressed", String(isPlaying));
-            item.setAttribute("aria-label", `${isPlaying ? "Pause" : "Play"} ${item.dataset.title} clip`);
+
+            item.classList.toggle(
+                "is-active",
+                selected
+            );
+
+            item.classList.toggle(
+                "is-playing",
+                isPlaying
+            );
+
+            item.setAttribute(
+                "aria-pressed",
+                String(isPlaying)
+            );
+
+            item.setAttribute(
+                "aria-label",
+                `${isPlaying ? "Pause" : "Play"} ${item.dataset.title} clip`
+            );
         });
     }
+
+    // ---------------------------------------------------------
+    // PLAYBACK
+    // ---------------------------------------------------------
 
     async function playClip() {
         const request = ++playRequest;
-        musicStatus.textContent = `Loading ${selectedItem.dataset.title}…`;
+
+        musicStatus.textContent =
+            `Loading ${selectedItem.dataset.title}…`;
+
+        /*
+            Set the correct volume immediately before playback.
+
+            If we're at the beginning of the track, this will be zero
+            because the fade starts from silence.
+        */
+        updatePlaybackVolume();
+
         try {
             await musicAudio.play();
+
+            if (request !== playRequest) return;
+
+            startVolumeAnimation();
         } catch (error) {
-            // A newer selection or a pause can cancel a pending play request.
-            if (request !== playRequest || error.name === "AbortError") return;
-            console.error("Could not play the selected music clip:", error);
-            musicStatus.textContent = error.name === "NotAllowedError"
-                ? "Playback was blocked. Try the player's play button."
-                : "This clip couldn't be played. Try another song.";
+            /*
+                A newer selection or a pause can cancel a pending
+                playback request.
+            */
+            if (
+                request !== playRequest ||
+                error.name === "AbortError"
+            ) {
+                return;
+            }
+
+            console.error(
+                "Could not play the selected music clip:",
+                error
+            );
+
+            musicStatus.textContent =
+                error.name === "NotAllowedError"
+                    ? "Playback was blocked. Try the player's play button."
+                    : "This clip couldn't be played. Try another song.";
+
             updateControls();
         }
     }
 
+    // ---------------------------------------------------------
+    // SONG SELECTION
+    // ---------------------------------------------------------
+
     musicItems.forEach((item) => {
         item.addEventListener("click", () => {
+            // Clicking the currently selected item toggles play/pause.
             if (item === selectedItem) {
-                if (!musicAudio.paused && !musicAudio.ended) {
+                if (
+                    !musicAudio.paused &&
+                    !musicAudio.ended
+                ) {
                     ++playRequest;
                     musicAudio.pause();
                 } else {
-                    if (musicAudio.ended) musicAudio.currentTime = 0;
+                    if (musicAudio.ended) {
+                        musicAudio.currentTime = 0;
+                    }
+
                     playClip();
                 }
+
                 return;
             }
 
+            // Stop previous song.
             ++playRequest;
+
             musicAudio.pause();
+            stopVolumeAnimation();
+
+            // Select new song.
             selectedItem = item;
+
             musicAudio.src = item.dataset.audio;
-            musicAudio.setAttribute("aria-label", `${item.dataset.title} audio clip`);
+
+            musicAudio.setAttribute(
+                "aria-label",
+                `${item.dataset.title} audio clip`
+            );
+
+            /*
+                Start at silence.
+
+                loadedmetadata/playback will calculate the proper
+                loudness-adjusted fade volume from here.
+            */
+            musicAudio.volume = 0;
+
             changeCover(item);
-            musicTitle.textContent = item.dataset.title;
-            musicSource.textContent = item.dataset.source;
+
+            musicTitle.textContent =
+                item.dataset.title;
+
+            musicSource.textContent =
+                item.dataset.source;
+
             updateTimeline();
             updateControls();
+
             playClip();
         });
     });
 
+    // ---------------------------------------------------------
+    // MAIN PLAY / PAUSE BUTTON
+    // ---------------------------------------------------------
+
     musicToggle.addEventListener("click", () => {
-        if (!musicAudio.paused && !musicAudio.ended) {
+        if (
+            !musicAudio.paused &&
+            !musicAudio.ended
+        ) {
             ++playRequest;
             musicAudio.pause();
         } else {
-            if (musicAudio.ended) musicAudio.currentTime = 0;
+            if (musicAudio.ended) {
+                musicAudio.currentTime = 0;
+            }
+
             playClip();
         }
     });
 
-    musicAudio.addEventListener("play", updateControls);
-    musicAudio.addEventListener("loadedmetadata", updateTimeline);
-    musicAudio.addEventListener("durationchange", updateTimeline);
-    musicAudio.addEventListener("playing", () => {
-        musicStatus.textContent = `Playing ${selectedItem.dataset.title}`;
+    // ---------------------------------------------------------
+    // AUDIO EVENTS
+    // ---------------------------------------------------------
+
+    musicAudio.addEventListener("play", () => {
         updateControls();
+        startVolumeAnimation();
     });
-    musicAudio.addEventListener("pause", () => {
-        if (!musicAudio.ended && !musicAudio.error) {
-            musicStatus.textContent = musicAudio.currentTime === 0
-                ? "Stopped. Choose a song or press play."
-                : `Paused · ${selectedItem.dataset.title}`;
+
+    musicAudio.addEventListener(
+        "loadedmetadata",
+        () => {
+            updateTimeline();
+            updatePlaybackVolume();
         }
+    );
+
+    musicAudio.addEventListener(
+        "durationchange",
+        () => {
+            updateTimeline();
+            updatePlaybackVolume();
+        }
+    );
+
+    musicAudio.addEventListener("playing", () => {
+        musicStatus.textContent =
+            `Playing ${selectedItem.dataset.title}`;
+
+        updateControls();
+        startVolumeAnimation();
+    });
+
+    musicAudio.addEventListener("pause", () => {
+        stopVolumeAnimation();
+        updatePlaybackVolume();
+
+        if (
+            !musicAudio.ended &&
+            !musicAudio.error
+        ) {
+            musicStatus.textContent =
+                musicAudio.currentTime === 0
+                    ? "Stopped. Choose a song or press play."
+                    : `Paused · ${selectedItem.dataset.title}`;
+        }
+
         updateControls();
     });
+
+    musicAudio.addEventListener("ended", () => {
+        stopVolumeAnimation();
+
+        // Ensure we actually reach silence at the end.
+        musicAudio.volume = 0;
+
+        updateControls();
+    });
+
     musicAudio.addEventListener("waiting", () => {
-        if (!musicAudio.paused) musicStatus.textContent = `Loading ${selectedItem.dataset.title}…`;
+        if (!musicAudio.paused) {
+            musicStatus.textContent =
+                `Loading ${selectedItem.dataset.title}…`;
+        }
     });
+
     musicAudio.addEventListener("error", () => {
-        musicStatus.textContent = "This clip couldn't be loaded. Try another song.";
+        stopVolumeAnimation();
+
+        musicStatus.textContent =
+            "This clip couldn't be loaded. Try another song.";
+
         updateControls();
     });
-    musicAudio.addEventListener("timeupdate", updateTimeline);
+
+    musicAudio.addEventListener(
+        "timeupdate",
+        updateTimeline
+    );
+
+    /*
+        Makes the volume immediately correct if the user seeks through
+        the track using another control or script.
+    */
+    musicAudio.addEventListener(
+        "seeked",
+        updatePlaybackVolume
+    );
+
+    // ---------------------------------------------------------
+    // PAGE CLEANUP
+    // ---------------------------------------------------------
+
     window.addEventListener("pagehide", () => {
         ++playRequest;
+
+        stopVolumeAnimation();
         musicAudio.pause();
     });
+
+    // ---------------------------------------------------------
+    // INITIAL STATE
+    // ---------------------------------------------------------
+
+    /*
+        Apply the initial song's loudness correction.
+
+        If the audio starts at 0:00, it'll correctly start at volume 0
+        ready for the fade-in.
+    */
+    updatePlaybackVolume();
     updateTimeline();
     updateControls();
 }
