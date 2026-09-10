@@ -89,11 +89,6 @@
     font-size: .9rem;
 }
 
-.home-text-link span {
-    margin-left: .6rem;
-    color: var(--accent);
-}
-
 .home-text-link:hover {
     text-decoration: underline;
     text-underline-offset: 5px;
@@ -163,11 +158,6 @@
     margin: .5rem 0 0;
     color: var(--muted);
     font-size: .88rem;
-}
-
-.home-feature-arrow {
-    color: var(--accent);
-    font-size: 1.75rem;
 }
 
 .home-topics {
@@ -280,7 +270,7 @@
 }
 
 .home-card-footer>span {
-    color: var(--accent);
+    color: inherit;
 }
 
 .home-highlight {

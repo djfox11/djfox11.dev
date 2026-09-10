@@ -1,369 +1,248 @@
 *,
-*::after,
-*::before {
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
 .cards-grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
-    gap: 1.25rem;
-
-    width: 100%;
-    max-width: calc((320px * 4) + (1.25rem * 3) + 4rem);
-    margin: 0 auto;
-    padding: 0 2rem 2rem;
-
-    justify-content: center;
-    align-items: stretch;
-}
-
-.badge-card {
-    --badge-card-radius: 10px;
-
-    background: #1a1919;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--badge-card-radius);
-    overflow: hidden;
-    position: relative;
-    transition: border-color 150ms ease, transform 150ms ease;
-}
-
-.badge-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
-}
-
-.badge-card-link {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.badge-card-image-wrap {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 0.67 / 1;
-    overflow: hidden;
-}
-
-.badge-card-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
-.badge-card-badges {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-}
-
-.badge {
-    font-size: 16px;
-    font-weight: 600;
-    padding: 3px 7px;
-    border-radius: 4px;
-    line-height: 1.3;
-    letter-spacing: 0.02em;
-}
-
-.badge-platform {
-    background: rgba(0, 0, 0, 0.6);
-    color: #e0e0e0;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-}
-
-.badge-difficulty {
-    color: #fff;
-}
-
-.badge-easy {
-    background: #1a5c36;
-}
-
-.badge-moderate {
-    background: #6b430e;
-}
-
-.badge-advanced {
-    background: #6b1a1a;
-}
-
-.badge-card-content {
-    padding: 0.875rem 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    flex: 1;
-}
-
-.badge-card-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    line-height: 1.3;
-    margin: 0;
-    color: #f0f0f0;
-}
-
-.badge-card-description {
-    margin: 0;
-}
-
-.badge-card-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: auto;
-}
-
-.tool-tag {
-    font-size: 15px;
-    background: #444444;
-    color: #bebebe;
-    border: 1px solid rgba(255, 255, 255, 0.151);
-    border-radius: 3px;
-    padding: 2px 6px;
-}
-
-.badge-card-footer {
-    border-top: 1px solid rgba(255, 255, 255, 0.151);
-    padding: 0.625rem 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.badge-card-footer-label {
-    color: #928f8f;
-}
-
-.badge-card-footer-arrow {
-    color: #928f8f;
-}
-.cards-grid-container {
     counter-reset: guide-card;
     width: min(var(--page), 100%);
-    max-width: none;
     margin: 0 auto;
     padding: 0 var(--gutter) var(--space);
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 0;
-    border-top: 1px solid var(--line);
-    border-left: 1px solid var(--line);
-    justify-content: stretch
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
 }
 
 .badge-card {
     counter-increment: guide-card;
-    --badge-card-radius: 0;
     position: relative;
-    background: transparent;
-    border: 0;
-    border-right: 1px solid var(--line);
-    border-bottom: 1px solid var(--line);
-    border-radius: 0;
+    min-width: 0;
+    min-height: 270px;
     overflow: hidden;
-    transition: background .25s
+    background: var(--raised);
+    border: 1px solid var(--line);
+    transition: border-color .25s ease, background .25s ease;
 }
 
-.badge-card::before {
-    content: "0" counter(guide-card);
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 4;
-    color: #fff;
-    font: 400 .65rem "IBM Plex Mono", monospace;
-    letter-spacing: .08em;
-    text-shadow: 0 1px 8px #000
+.badge-card:not(.badge-card-upcoming) {
+    border-color: var(--line-strong);
 }
 
-.badge-card:hover {
-    background: var(--soft);
-    border-color: var(--line);
-    transform: none
+.badge-card:not(.badge-card-upcoming):hover {
+    border-color: var(--ink);
 }
 
 .badge-card-link {
-    height: 100%
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(150px, 34%) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    color: inherit;
+    text-decoration: none;
 }
 
 .badge-card-image-wrap {
-    aspect-ratio: 4/5;
-    background: #181818
+    position: relative;
+    min-height: 268px;
+    grid-row: 1 / 3;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem 1rem;
+    background: #0c0c0c;
+    border-right: 1px solid var(--line);
 }
 
 .badge-card-image {
-    filter: none;
-    transition: filter .45s, transform .6s var(--ease)
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+    filter: saturate(.86) contrast(.96);
+    transition: filter .4s ease, transform .55s var(--ease), opacity .3s ease;
 }
 
-.badge-card:hover .badge-card-image {
-    filter: none;
-    transform: scale(1.025)
+.badge-card:not(.badge-card-upcoming):hover .badge-card-image {
+    filter: saturate(1) contrast(1);
+    transform: scale(1.025);
 }
 
-.badge-card-image-wrap::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 55%, rgba(0, 0, 0, .55));
-    pointer-events: none
+.badge-card-upcoming .badge-card-image {
+    opacity: .72;
 }
 
 .badge-card-badges {
-    top: auto;
-    right: 1rem;
-    bottom: 1rem;
-    left: 1rem;
+    position: absolute;
+    right: .75rem;
+    bottom: .75rem;
+    left: .75rem;
     z-index: 2;
-    gap: .35rem
+    display: flex;
+    flex-wrap: wrap;
+    gap: .3rem;
 }
 
 .badge {
-    padding: .3rem .45rem;
-    border: 1px solid rgba(255, 255, 255, .35);
-    border-radius: 0;
-    background: rgba(0, 0, 0, .72) !important;
-    color: #eee !important;
-    font: 400 .62rem "IBM Plex Mono", monospace;
-    letter-spacing: .07em;
+    padding: .32rem .45rem;
+    border: 1px solid rgba(255, 255, 255, .3);
+    background: rgba(8, 8, 8, .82);
+    color: #eee;
+    font: 400 .57rem "IBM Plex Mono", monospace;
+    letter-spacing: .08em;
     line-height: 1;
     text-transform: uppercase;
-    backdrop-filter: none
 }
 
 .badge-difficulty::before {
-    content: "LEVEL / ";
-    color: #8b8b8b
+    content: "Level / ";
+    color: #8e8e88;
 }
 
 .badge-card-content {
-    padding: 1.25rem;
-    gap: .8rem
+    min-width: 0;
+    padding: 1.45rem 1.5rem 1.15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .85rem;
 }
 
 .badge-card-title {
+    max-width: 15ch;
+    margin: 0;
     color: var(--ink);
-    font-size: clamp(1.3rem, 1.8vw, 1.8rem);
-    font-weight: 550;
-    letter-spacing: -.045em;
-    line-height: 1.05
+    font-size: clamp(1.45rem, 2vw, 2rem);
+    font-weight: 540;
+    letter-spacing: -.052em;
+    line-height: 1;
 }
 
 .badge-card-description {
+    max-width: 42ch;
+    margin: 0;
     color: var(--muted);
-    font-size: .95rem;
-    line-height: 1.55
+    font-size: .9rem;
+    line-height: 1.55;
+}
+
+.badge-card-upcoming .badge-card-description {
+    display: none;
 }
 
 .badge-card-tools {
-    gap: .4rem
+    margin-top: auto;
 }
 
 .tool-tag {
-    padding: 0;
-    background: none;
-    border: 0;
-    border-radius: 0;
     color: var(--quiet);
-    font: 400 .64rem "IBM Plex Mono", monospace;
-    letter-spacing: .06em;
-    text-transform: uppercase
+    font: 400 .61rem "IBM Plex Mono", monospace;
+    letter-spacing: .07em;
+    text-transform: uppercase;
 }
 
 .tool-tag::before {
-    content: "DEV / ";
-    color: var(--muted)
+    content: "Studio / ";
+    color: var(--muted);
 }
 
 .badge-card-footer {
-    margin-top: auto;
-    padding: .85rem 1.25rem;
+    min-height: 48px;
+    grid-column: 2;
+    padding: .75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
     border-top: 1px solid var(--line);
     color: var(--quiet);
-    font: 400 .67rem "IBM Plex Mono", monospace;
-    letter-spacing: .07em;
-    text-transform: uppercase
+    font: 400 .62rem "IBM Plex Mono", monospace;
+    letter-spacing: .09em;
+    text-transform: uppercase;
 }
 
-.badge-card-footer-arrow {
-    color: var(--muted);
-    transition: transform .3s var(--ease)
+.badge-card:not(.badge-card-upcoming) .badge-card-footer {
+    background: var(--ink);
+    color: var(--paper);
 }
 
-.badge-card:hover .badge-card-footer-arrow {
-    transform: translate(3px, -3px)
+.badge-card-footer-label {
+    color: inherit;
+}
+
+.badge-card-upcoming .badge-card-footer::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    flex: 0 0 5px;
+    border-radius: 50%;
+    background: var(--quiet);
+    opacity: .65;
+}
+
+.badge-card-link:focus-visible {
+    outline-offset: -5px !important;
 }
 
 .badge-card.is-hidden {
-    display: none
+    display: none;
 }
 
-@media(max-width:1100px) {
+@media (max-width: 920px) {
     .cards-grid-container {
-        grid-template-columns: repeat(3, minmax(0, 1fr))
+        grid-template-columns: 1fr;
+    }
+
+    .badge-card-link {
+        grid-template-columns: minmax(150px, 30%) minmax(0, 1fr);
     }
 }
 
-@media(max-width:780px) {
+@media (max-width: 520px) {
     .cards-grid-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr))
+        gap: .75rem;
     }
 
-    .badge-card-description {
-        display: none
+    .badge-card {
+        min-height: 0;
     }
-}
 
-@media(max-width:520px) {
-    .cards-grid-container {
-        grid-template-columns: 1fr
+    .badge-card-link {
+        display: flex;
+        flex-direction: column;
     }
 
     .badge-card-image-wrap {
-        aspect-ratio: 16/11
+        width: 100%;
+        min-height: 0;
+        aspect-ratio: 16 / 10;
+        padding: 1.1rem;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
     }
 
-    .badge-card-description {
-        display: block
+    .badge-card-image {
+        max-width: 45%;
+    }
+
+    .badge-card-content {
+        min-height: 145px;
+        padding: 1.2rem;
+    }
+
+    .badge-card-title {
+        max-width: 18ch;
+    }
+
+    .badge-card-footer {
+        width: 100%;
+        padding: .75rem 1.2rem;
     }
 }
-.badge-card-image-wrap {
-    aspect-ratio: 2/3
-}
 
-.badge-card-image {
-    object-fit: contain;
-    transform: none;
-    transition: filter .35s ease
-}
-
-.badge-card:hover .badge-card-image {
-    filter: none;
-    transform: none
-}
-
-@media(max-width:520px) {
-    .badge-card-image-wrap {
-        aspect-ratio: 2/3
+@media (prefers-reduced-motion: reduce) {
+    .badge-card,
+    .badge-card-image {
+        transition: none;
     }
 }
-/* Separate the artwork into readable entries without cropping game covers. */
-.cards-grid-container { gap: 1.5rem; border: 0; }
-.badge-card { background: var(--raised); border: 1px solid var(--line); }
-.badge-card::before { content: counter(guide-card, decimal-leading-zero); }
-.badge-card-content { padding: 1.3rem; }
-.badge-card-footer-label, .badge-card-footer-arrow { color: var(--muted); }
-.badge-card-upcoming:hover { background: var(--raised); }
-.badge-card-upcoming .badge-card-footer-label { color: var(--quiet); }

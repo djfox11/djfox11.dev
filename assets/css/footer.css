@@ -239,6 +239,18 @@
     transform-origin: left
 }
 
+/* Shared treatment for links that refer visitors to another page or resource. */
+.referral-arrow {
+    display: inline-block;
+    margin-left: .3em;
+    font: 400 .75em "IBM Plex Mono", monospace;
+    transition: transform 180ms var(--ease);
+}
+
+a:hover .referral-arrow {
+    transform: translate(2px, -2px);
+}
+
 .footer-bottom {
     width: min(var(--page), 100%);
     max-width: none;
@@ -283,5 +295,11 @@
 
     .footer-section {
         padding-top: 1rem
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    .referral-arrow {
+        transition: none
     }
 }
