@@ -4,14 +4,62 @@ const musicTitle = document.getElementById("music-title");
 const musicSource = document.getElementById("music-source");
 const musicAudio = document.getElementById("music-audio");
 const musicStatus = document.getElementById("music-status");
-const musicStop = document.getElementById("music-stop");
+const musicToggle = document.getElementById("music-toggle");
+const musicProgress = document.getElementById("music-progress");
+const musicProgressFill = document.getElementById("music-progress-fill");
+const musicCurrentTime = document.getElementById("music-current-time");
+const musicDuration = document.getElementById("music-duration");
+const musicPlayer = document.querySelector(".music-player");
+const musicDisplay = document.querySelector(".music-display");
 
-if (musicAudio && musicStatus && musicStop && musicItems.length) {
+if (musicAudio && musicStatus && musicToggle && musicProgress && musicProgressFill && musicCurrentTime && musicDuration && musicPlayer && musicDisplay && musicItems.length) {
     let selectedItem = musicItems.find((item) => item.classList.contains("is-active")) || musicItems[0];
     let playRequest = 0;
+    let coverChangeTimeout;
+    let coverChangeRequest = 0;
+
+    function formatTime(seconds) {
+        if (!Number.isFinite(seconds)) return "0:00";
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, "0");
+        return `${minutes}:${remainingSeconds}`;
+    }
+
+    function updateTimeline() {
+        const duration = Number.isFinite(musicAudio.duration) ? musicAudio.duration : 0;
+        const currentTime = Number.isFinite(musicAudio.currentTime) ? musicAudio.currentTime : 0;
+        const progress = duration ? (currentTime / duration) * 100 : 0;
+
+        musicProgressFill.style.width = `${progress}%`;
+        musicProgress.setAttribute("aria-valuenow", String(Math.round(progress)));
+        musicProgress.setAttribute("aria-valuetext", `${formatTime(currentTime)} of ${formatTime(duration)}`);
+        musicCurrentTime.textContent = formatTime(currentTime);
+        musicDuration.textContent = formatTime(duration);
+    }
+
+    function changeCover(item) {
+        const request = ++coverChangeRequest;
+        window.clearTimeout(coverChangeTimeout);
+        musicDisplay.classList.add("is-changing");
+
+        coverChangeTimeout = window.setTimeout(() => {
+            const revealCover = () => {
+                if (request !== coverChangeRequest) return;
+                requestAnimationFrame(() => musicDisplay.classList.remove("is-changing"));
+            };
+
+            musicCover.addEventListener("load", revealCover, { once: true });
+            musicCover.src = item.dataset.cover;
+            musicCover.alt = `${item.dataset.source} cover art`;
+            if (musicCover.complete) revealCover();
+        }, 180);
+    }
 
     function updateControls() {
         const playing = !musicAudio.paused && !musicAudio.ended;
+        musicPlayer.classList.toggle("is-playing", playing);
+        musicToggle.setAttribute("aria-label", `${playing ? "Pause" : "Play"} ${selectedItem.dataset.title} clip`);
+        musicToggle.setAttribute("aria-pressed", String(playing));
         musicItems.forEach((item) => {
             const selected = item === selectedItem;
             const isPlaying = selected && playing;
@@ -20,7 +68,6 @@ if (musicAudio && musicStatus && musicStop && musicItems.length) {
             item.setAttribute("aria-pressed", String(isPlaying));
             item.setAttribute("aria-label", `${isPlaying ? "Pause" : "Play"} ${item.dataset.title} clip`);
         });
-        musicStop.disabled = musicAudio.paused && musicAudio.currentTime === 0;
     }
 
     async function playClip() {
@@ -57,16 +104,28 @@ if (musicAudio && musicStatus && musicStop && musicItems.length) {
             selectedItem = item;
             musicAudio.src = item.dataset.audio;
             musicAudio.setAttribute("aria-label", `${item.dataset.title} audio clip`);
-            musicCover.src = item.dataset.cover;
-            musicCover.alt = `${item.dataset.source} cover art`;
+            changeCover(item);
             musicTitle.textContent = item.dataset.title;
             musicSource.textContent = item.dataset.source;
+            updateTimeline();
             updateControls();
             playClip();
         });
     });
 
+    musicToggle.addEventListener("click", () => {
+        if (!musicAudio.paused && !musicAudio.ended) {
+            ++playRequest;
+            musicAudio.pause();
+        } else {
+            if (musicAudio.ended) musicAudio.currentTime = 0;
+            playClip();
+        }
+    });
+
     musicAudio.addEventListener("play", updateControls);
+    musicAudio.addEventListener("loadedmetadata", updateTimeline);
+    musicAudio.addEventListener("durationchange", updateTimeline);
     musicAudio.addEventListener("playing", () => {
         musicStatus.textContent = `Playing ${selectedItem.dataset.title}`;
         updateControls();
@@ -82,27 +141,15 @@ if (musicAudio && musicStatus && musicStop && musicItems.length) {
     musicAudio.addEventListener("waiting", () => {
         if (!musicAudio.paused) musicStatus.textContent = `Loading ${selectedItem.dataset.title}…`;
     });
-    musicAudio.addEventListener("ended", () => {
-        musicStatus.textContent = "Clip finished. Play it again or choose another song.";
-        updateControls();
-    });
     musicAudio.addEventListener("error", () => {
         musicStatus.textContent = "This clip couldn't be loaded. Try another song.";
         updateControls();
     });
-    musicAudio.addEventListener("timeupdate", () => {
-        musicStop.disabled = musicAudio.paused && musicAudio.currentTime === 0;
-    });
-    musicStop.addEventListener("click", () => {
-        ++playRequest;
-        musicAudio.pause();
-        musicAudio.currentTime = 0;
-        musicStatus.textContent = "Stopped. Choose a song or press play.";
-        updateControls();
-    });
+    musicAudio.addEventListener("timeupdate", updateTimeline);
     window.addEventListener("pagehide", () => {
         ++playRequest;
         musicAudio.pause();
     });
+    updateTimeline();
     updateControls();
 }

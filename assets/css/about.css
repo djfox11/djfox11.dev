@@ -356,12 +356,12 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
 
     transition:
-        opacity 150ms ease,
-        transform 150ms ease;
+        opacity 180ms ease,
+        transform 180ms ease;
 }
 
 .music-display.is-changing img {
-    opacity: 0.45;
+    opacity: 0.08;
     transform: scale(0.985);
 }
 
@@ -840,7 +840,7 @@
     border: 1px solid var(--line);
     border-radius: 0;
     filter: none;
-    transition: filter .35s, opacity .15s, transform .15s
+    transition: filter .35s, opacity .18s, transform .18s
 }
 
 .music-display:hover img {
@@ -1042,61 +1042,112 @@
     }
 }
 /* One shared player keeps the selected clip and its controls together. */
-.music-display, .music-player {
+.music-display,
+.music-player {
     min-width: 0;
     width: 100%;
 }
 
 .music-player {
-    padding-top: 1rem;
+    padding-top: 1.15rem;
     border-top: 1px solid var(--line);
 }
 
 .music-player audio {
-    display: block;
-    width: 100%;
-    color-scheme: dark;
+    display: none;
 }
 
-.music-player-footer {
+.music-player-controls {
     display: flex;
-    align-items: flex-start;
-    gap: .75rem;
-    margin-top: .75rem;
+    align-items: center;
+    gap: 1rem;
 }
 
-.music-player-footer p {
-    flex: 1;
-    margin: 0;
-    color: var(--muted);
-    font-size: .8rem;
-    line-height: 1.5;
-}
-
-#music-stop {
-    min-height: 44px;
-    padding: .4rem .8rem;
+#music-toggle {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    display: grid;
+    place-items: center;
+    padding: 0;
     border: 1px solid var(--line-strong);
+    background: var(--ink);
+    color: var(--paper);
+    cursor: pointer;
+    transition: background .2s, color .2s, transform .2s var(--ease);
+}
+
+#music-toggle:hover {
     background: transparent;
     color: var(--ink);
-    font: .7rem "IBM Plex Mono", monospace;
-    cursor: pointer;
 }
 
-#music-stop:hover:not(:disabled) {
-    background: var(--soft);
+#music-toggle:active {
+    transform: scale(.94);
 }
 
-#music-stop:disabled {
-    opacity: .45;
-    cursor: default;
+.music-icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.music-icon-pause,
+.music-player.is-playing .music-icon-play {
+    display: none;
+}
+
+.music-player.is-playing .music-icon-pause {
+    display: block;
+}
+
+.music-timeline {
+    min-width: 0;
+    flex: 1;
+}
+
+#music-progress {
+    width: 100%;
+    height: 2px;
+    display: block;
+    overflow: hidden;
+    background: var(--line);
+}
+
+#music-progress-fill {
+    width: 0;
+    height: 2px;
+    display: block;
+    background: var(--ink);
+}
+
+.music-time {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .55rem;
+    color: var(--quiet);
+    font: 400 .58rem "IBM Plex Mono", monospace;
+    letter-spacing: .06em;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 .music-item {
     padding-right: 4.5rem;
 }
 
-.music-item::after, .music-item.is-active::after {
+.music-item::after,
+.music-item.is-active::after {
     content: "PLAY";
 }
 

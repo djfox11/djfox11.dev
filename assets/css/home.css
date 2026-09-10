@@ -392,3 +392,15 @@
     font-weight: 500;
     letter-spacing: -.06em;
 }
+
+.external-arrow {
+    display: inline-block;
+    margin-left: 0.3em;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.75em;
+    transition: transform 180ms var(--ease);
+}
+
+a:hover .external-arrow {
+    transform: translate(2px, -2px);
+}

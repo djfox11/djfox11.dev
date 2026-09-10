@@ -141,11 +141,28 @@
                                 <p id="music-source">Final Fantasy VII Remake</p>
                             </div>
                             <div class="music-player">
-                                <audio id="music-audio" controls preload="metadata" src="/assets/audio/hollow.mp3" aria-label="Hollow audio clip"></audio>
-                                <div class="music-player-footer">
-                                    <p id="music-status" role="status" aria-live="polite">Choose a song to hear a short clip.</p>
-                                    <button id="music-stop" type="button" disabled>Stop</button>
+                                <audio id="music-audio" preload="metadata" src="/assets/audio/hollow.mp3" loop></audio>
+                                <div class="music-player-controls">
+                                    <button id="music-toggle" type="button" aria-label="Play Hollow clip">
+                                        <svg class="music-icon music-icon-play" viewBox="0 0 20 20" aria-hidden="true">
+                                            <path d="M6.5 4.5 15 10l-8.5 5.5z" />
+                                        </svg>
+                                        <svg class="music-icon music-icon-pause" viewBox="0 0 20 20" aria-hidden="true">
+                                            <path d="M5.5 4.5h3v11h-3zm6 0h3v11h-3z" />
+                                        </svg>
+                                    </button>
+
+                                    <div class="music-timeline">
+                                        <div id="music-progress" role="progressbar" aria-label="Song progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                            <span id="music-progress-fill"></span>
+                                        </div>
+                                        <div class="music-time" aria-hidden="true">
+                                            <span id="music-current-time">0:00</span>
+                                            <span id="music-duration">0:00</span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <p id="music-status" class="visually-hidden" role="status" aria-live="polite">Choose a song to hear a short clip.</p>
                             </div>
                         </article>
 
