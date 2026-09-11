@@ -347,17 +347,6 @@ a {
     -webkit-backdrop-filter: blur(12px)
 }
 
-.site-header::after {
-    content: "GAME ASSETS / CODE";
-    position: absolute;
-    left: var(--gutter);
-    bottom: 7px;
-    color: var(--quiet);
-    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
-    letter-spacing: .05em;
-    pointer-events: none
-}
-
 .site-logo {
     position: relative;
     width: fit-content;
