@@ -1,5 +1,3 @@
-console.log("contact.js loaded");
-
 const form = document.getElementById("contact-form");
 const submitButton = document.querySelector(".contact-submit");
 
@@ -39,104 +37,6 @@ function showToast(message, type = "info", duration = 4000) {
         }, duration);
     }
 }
-
-function closeAllCustomSelects() {
-    document.querySelectorAll(".custom-select.is-open").forEach((select) => {
-        select.classList.remove("is-open");
-
-        const button = select.querySelector(".custom-select-button");
-
-        if (button) {
-            button.setAttribute("aria-expanded", "false");
-        }
-    });
-}
-
-function resetCustomSelect() {
-    if (reasonInput) {
-        reasonInput.value = "";
-    }
-
-    const selectedText = document.querySelector("[data-selected-text]");
-
-    if (selectedText) {
-        selectedText.textContent = "Choose a topic";
-    }
-
-    document.querySelectorAll(".custom-select-menu [role='option']").forEach((option) => {
-        option.classList.remove("is-selected");
-        option.setAttribute("aria-selected", "false");
-    });
-
-    closeAllCustomSelects();
-}
-
-document.querySelectorAll("[data-custom-select]").forEach((select) => {
-    const button = select.querySelector(".custom-select-button");
-    const selectedText = select.querySelector("[data-selected-text]");
-    const hiddenInput = select.querySelector("input[type='hidden']");
-    const options = Array.from(select.querySelectorAll("[role='option']"));
-
-    if (!button || !selectedText || !hiddenInput || options.length === 0) {
-        return;
-    }
-
-    function closeSelect() {
-        select.classList.remove("is-open");
-        button.setAttribute("aria-expanded", "false");
-    }
-
-    function openSelect() {
-        select.classList.add("is-open");
-        button.setAttribute("aria-expanded", "true");
-    }
-
-    function selectOption(option) {
-        hiddenInput.value = option.dataset.value || option.textContent.trim();
-        selectedText.textContent = option.textContent.trim();
-
-        options.forEach((item) => {
-            item.classList.remove("is-selected");
-            item.setAttribute("aria-selected", "false");
-        });
-
-        option.classList.add("is-selected");
-        option.setAttribute("aria-selected", "true");
-
-        closeSelect();
-    }
-
-    button.addEventListener("click", (event) => {
-        event.stopPropagation();
-
-        const isOpen = select.classList.contains("is-open");
-
-        closeAllCustomSelects();
-
-        if (!isOpen) {
-            openSelect();
-        }
-    });
-
-    options.forEach((option) => {
-        option.addEventListener("click", (event) => {
-            event.stopPropagation();
-            selectOption(option);
-        });
-    });
-
-    document.addEventListener("click", (event) => {
-        if (!select.contains(event.target)) {
-            closeSelect();
-        }
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            closeSelect();
-        }
-    });
-});
 
 if (pageUrlInput) {
     pageUrlInput.value = window.location.href;
@@ -181,7 +81,6 @@ if (form) {
             if (data.success) {
                 showToast("Thanks! Your message has been sent.", "success");
                 form.reset();
-                resetCustomSelect();
             } else {
                 showToast(data.message || "Your message didn't go through. Please try again.", "error");
             }

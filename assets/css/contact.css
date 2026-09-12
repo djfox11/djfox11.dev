@@ -215,115 +215,26 @@
     color: #f5f5f5;
 }
 
-.custom-select {
+.select-wrap {
     position: relative;
 }
 
-.custom-select-button {
-    width: 100%;
-    min-height: 46px;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
-    background: #101010;
-    color: #f5f5f5;
-
-    font: inherit;
-    font-size: 1rem;
-    font-weight: 500;
-
-    padding: 0.8rem 0.85rem;
+.select-wrap select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 2.5rem;
     cursor: pointer;
-
-    transition:
-        border-color 150ms ease,
-        background 150ms ease,
-        box-shadow 150ms ease;
 }
 
-.custom-select-button:hover {
-    border-color: rgba(255, 255, 255, 0.22);
-    background: #121212;
-}
-
-.custom-select-button:focus-visible {
-    outline: none;
-    border-color: rgba(255, 255, 255, 0.42);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
-}
-
-.custom-select-arrow {
-    color: #928f8f;
-    font-size: 1.1rem;
-    line-height: 1;
-    transition: transform 150ms ease;
-}
-
-.custom-select.is-open .custom-select-arrow {
-    transform: rotate(180deg);
-}
-
-.custom-select-menu {
+.select-arrow {
     position: absolute;
-    top: calc(100% + 0.45rem);
-    left: 0;
-    right: 0;
-    z-index: 20;
-
-    list-style: none;
-    margin: 0;
-    padding: 0.35rem;
-
-    background: #171717;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 8px;
-
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
-
-    opacity: 0;
-    transform: translateY(-6px) scale(0.98);
+    top: 50%;
+    right: 0.85rem;
+    width: 0.75rem;
+    height: 0.5rem;
+    color: #928f8f;
     pointer-events: none;
-
-    transition:
-        opacity 150ms ease,
-        transform 150ms ease;
-}
-
-.custom-select.is-open .custom-select-menu {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-}
-
-.custom-select-menu li {
-    padding: 0.7rem 0.75rem;
-
-    color: #bdbdbd;
-    font-size: 1rem;
-    font-weight: 500;
-
-    border-radius: 6px;
-    cursor: pointer;
-
-    transition:
-        background 150ms ease,
-        color 150ms ease;
-}
-
-.custom-select-menu li:hover,
-.custom-select-menu li.is-highlighted {
-    background: rgba(255, 255, 255, 0.075);
-    color: #f5f5f5;
-}
-
-.custom-select-menu li.is-selected {
-    background: #f0f0f0;
-    color: #111;
+    transform: translateY(-50%);
 }
 
 .form-field textarea {
@@ -523,7 +434,7 @@
     display: block;
     margin-bottom: 3rem;
     color: var(--quiet);
-    font: 400 .66rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .1em;
     text-transform: uppercase
 }
@@ -586,7 +497,7 @@
 
 .contact-link span:nth-child(2) {
     color: var(--quiet);
-    font: 400 .62rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .04em;
     text-transform: uppercase
 }
@@ -624,15 +535,14 @@
 
 .form-field label {
     color: var(--muted);
-    font: 400 .66rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .07em;
     text-transform: uppercase
 }
 
 .form-field input,
 .form-field select,
-.form-field textarea,
-.custom-select-button {
+.form-field textarea {
     border: 0;
     border-bottom: 1px solid var(--line-strong);
     border-radius: 0;
@@ -646,16 +556,14 @@
 
 .form-field input:hover,
 .form-field select:hover,
-.form-field textarea:hover,
-.custom-select-button:hover {
+.form-field textarea:hover {
     border-color: var(--ink);
     background: transparent
 }
 
 .contact-form .form-field input:focus,
 .contact-form .form-field select:focus,
-.contact-form .form-field textarea:focus,
-.contact-form .custom-select-button:focus {
+.contact-form .form-field textarea:focus {
     border-color: var(--line-strong);
     box-shadow: none;
     outline: none !important
@@ -663,15 +571,13 @@
 
 .contact-form .form-field input:hover,
 .contact-form .form-field select:hover,
-.contact-form .form-field textarea:hover,
-.contact-form .custom-select-button:hover {
+.contact-form .form-field textarea:hover {
     border-color: var(--ink)
 }
 
 .contact-form.is-keyboard-nav .form-field input:focus,
 .contact-form.is-keyboard-nav .form-field select:focus,
-.contact-form.is-keyboard-nav .form-field textarea:focus,
-.contact-form.is-keyboard-nav .custom-select-button:focus {
+.contact-form.is-keyboard-nav .form-field textarea:focus {
     border-color: var(--ink);
     background: transparent;
     box-shadow: none;
@@ -689,33 +595,6 @@
     resize: vertical
 }
 
-.custom-select-menu {
-    top: calc(100% + 1px);
-    padding: 0;
-    background: var(--ink);
-    border: 0;
-    border-radius: 0;
-    box-shadow: 0 18px 60px rgba(0, 0, 0, .5)
-}
-
-.custom-select-menu li {
-    padding: .8rem 1rem;
-    border-bottom: 1px solid rgba(0, 0, 0, .15);
-    border-radius: 0;
-    color: #444
-}
-
-.custom-select-menu li:hover,
-.custom-select-menu li.is-highlighted {
-    background: #deded8;
-    color: #080808
-}
-
-.custom-select-menu li.is-selected {
-    background: #080808;
-    color: var(--ink)
-}
-
 .contact-submit {
     min-height: 54px;
     padding: 0 1.25rem;
@@ -723,7 +602,7 @@
     border-radius: 0;
     background: var(--ink);
     color: var(--paper);
-    font: 400 .72rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-action-size) "IBM Plex Mono", monospace;
     letter-spacing: .08em;
     text-transform: uppercase;
     transition: background .2s, color .2s
@@ -748,7 +627,7 @@
     border: 0;
     border-radius: 0;
     color: var(--paper);
-    font: 400 .7rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .04em
 }
 

@@ -200,7 +200,7 @@
 .footer-section h2 {
     margin: 0 0 1.5rem;
     color: var(--quiet);
-    font: 400 .65rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .1em
 }
 
@@ -258,7 +258,7 @@ a:hover .referral-arrow {
     padding: 1.1rem var(--gutter);
     border-top: 1px solid var(--line);
     color: var(--quiet);
-    font: 400 .65rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .08em;
     text-transform: uppercase
 }

@@ -321,7 +321,7 @@ body {
     margin: 0 0 1rem;
     color: #fff;
     font-weight: 700;
-    font: 400 .81rem "IBM Plex Mono", monospace !important;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace !important;
     letter-spacing: .07em;
     text-transform: uppercase
 }
@@ -788,7 +788,7 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, .45);
     border-radius: 0;
     color: #ddd;
-    font: 400 .67rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .07em;
     text-decoration: none;
     text-transform: uppercase
@@ -811,7 +811,7 @@ body {
     border-radius: 0;
     background: rgba(0, 0, 0, .55) !important;
     color: #eee !important;
-    font: 400 .63rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .07em;
     text-transform: uppercase;
     backdrop-filter: none
@@ -873,7 +873,7 @@ body {
 
 .tutorial-sidebar-card h2 {
     color: var(--quiet);
-    font: 400 .65rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .08em;
     text-transform: uppercase
 }
@@ -975,7 +975,7 @@ body {
 
 .tutorial-learn-box h2 {
     max-width: none;
-    font: 400 .68rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-action-size) "IBM Plex Mono", monospace;
     letter-spacing: .08em;
     text-transform: uppercase
 }
@@ -1018,7 +1018,7 @@ body {
     background: none;
     border-radius: 0;
     color: var(--quiet);
-    font: 400 .67rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .08em
 }
 
@@ -1076,7 +1076,7 @@ body {
 
 .tutorial-figure figcaption {
     font-family: "IBM Plex Mono", monospace;
-    font-size: .67rem;
+    font-size: var(--mono-meta-size);
     letter-spacing: .04em
 }
 

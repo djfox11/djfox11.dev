@@ -5,7 +5,7 @@
     .nav::before { top: 5rem; }
     .nav a::after { background: none; }
     .nav-toggle { width: 64px; border: 0; border-radius: 0; color: var(--ink); }
-    .nav-toggle::before { content: "MENU"; font: .65rem "IBM Plex Mono", monospace; letter-spacing: .1em; }
+    .nav-toggle::before { content: "MENU"; font: var(--mono-meta-size) "IBM Plex Mono", monospace; letter-spacing: .1em; }
     .nav-toggle span { display: none; }
     .site-header.is-nav-open .nav-toggle::before { content: "CLOSE"; }
 }

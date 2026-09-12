@@ -270,8 +270,8 @@ body {
     --accent: #ffffff;
     --line: rgba(244, 244, 239, .18);
     --line-strong: rgba(244, 244, 239, .38);
-    --mono-meta-size: .75rem;
-    --mono-action-size: .8125rem;
+    --mono-meta-size: .8125rem;
+    --mono-action-size: .875rem;
     --page: 1480px;
     --gutter: clamp(1.25rem, 4vw, 4rem);
     --space: clamp(4rem, 8vw, 8.5rem);
@@ -330,6 +330,81 @@ a {
     outline-offset: 5px !important
 }
 
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2000;
+    padding: 0.75rem 1rem;
+    background: var(--ink);
+    color: var(--paper);
+    font: 400 var(--mono-action-size) "IBM Plex Mono", monospace;
+    text-decoration: none;
+    transform: translateY(calc(-100% - 1rem));
+    transition: transform 0.18s var(--ease);
+}
+
+.skip-link:focus {
+    transform: none;
+}
+
+.component-fallback,
+.component-error {
+    display: block;
+    margin: 0;
+    padding: 1rem var(--gutter);
+    color: var(--ink);
+    background: var(--paper);
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
+}
+
+.component-fallback {
+    min-height: 76px;
+    text-decoration: none;
+}
+
+.error-page {
+    width: min(760px, 100%);
+    min-height: 65vh;
+    margin: 0 auto;
+    padding: clamp(5rem, 12vw, 10rem) var(--gutter);
+}
+
+.error-page p:first-child {
+    color: var(--quiet);
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.error-page h1 {
+    margin: 0.5rem 0 1.5rem;
+    font-size: clamp(3rem, 9vw, 7rem);
+    font-weight: 520;
+    letter-spacing: -0.07em;
+    line-height: 0.9;
+}
+
+.error-page > p:not(:first-child) {
+    max-width: 52ch;
+    color: var(--muted);
+}
+
+.error-page a {
+    display: inline-flex;
+    margin-top: 1.5rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--ink);
+    font: 400 var(--mono-action-size) "IBM Plex Mono", monospace;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.error-page a:hover {
+    background: var(--ink);
+    color: var(--paper);
+}
+
 .site-header {
     position: sticky;
     top: 0;
@@ -386,7 +461,7 @@ a {
     border-right: 1px solid var(--line);
     border-radius: 0;
     color: var(--muted);
-    font: 400 clamp(.75rem, .78vw, var(--mono-action-size)) "IBM Plex Mono", monospace;
+    font: 400 clamp(var(--mono-meta-size), .78vw, var(--mono-action-size)) "IBM Plex Mono", monospace;
     letter-spacing: .035em;
     line-height: 1.2;
     text-decoration: none;
@@ -465,7 +540,7 @@ a {
     margin: 0 auto 1.5rem;
     padding: 0 var(--gutter);
     color: var(--quiet);
-    font: 400 .72rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .08em;
     text-transform: uppercase
 }
@@ -535,7 +610,7 @@ a {
         position: fixed;
         inset: 0;
         z-index: 1002;
-        width: 100vw;
+        width: 100%;
         height: 100vh;
         display: grid;
         align-items: end;
@@ -561,7 +636,7 @@ a {
         top: 8rem;
         left: var(--gutter);
         color: var(--quiet);
-        font: 400 .7rem "IBM Plex Mono", monospace;
+        font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
         letter-spacing: .12em
     }
 

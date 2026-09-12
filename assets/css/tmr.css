@@ -34,7 +34,7 @@
 .tmr-index {
     margin: 0;
     color: var(--quiet);
-    font: 400 0.67rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -74,7 +74,7 @@
     background: var(--ink);
     border: 1px solid var(--ink);
     color: var(--paper);
-    font: 400 0.7rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-action-size) "IBM Plex Mono", monospace;
     letter-spacing: 0.07em;
     text-decoration: none;
     text-transform: uppercase;
@@ -136,7 +136,7 @@
     position: absolute;
     top: 2rem;
     right: 2rem;
-    font: 400 0.62rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: 0.1em;
 }
 
@@ -162,7 +162,7 @@
 
 .tmr-summary dt {
     color: var(--quiet);
-    font: 400 0.63rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -283,7 +283,7 @@
 
 .tmr-archive-list span,
 .tmr-archive-list strong {
-    font: 400 0.67rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
@@ -338,7 +338,7 @@
 
 .tmr-table thead th {
     color: var(--quiet);
-    font: 400 0.62rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: 0.09em;
     text-transform: uppercase;
 }
@@ -365,7 +365,7 @@
 .tmr-table tbody td:first-child,
 .tmr-table tbody td:last-child {
     font-family: "IBM Plex Mono", monospace;
-    font-size: 0.75rem;
+    font-size: var(--mono-meta-size);
 }
 
 .tmr-role {
@@ -404,7 +404,7 @@
     border-top: 1px solid rgba(8, 8, 8, 0.25);
     border-bottom: 1px solid rgba(8, 8, 8, 0.25);
     color: #20201e;
-    font: 400 0.68rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-action-size) "IBM Plex Mono", monospace;
     letter-spacing: 0.06em;
     text-decoration: none;
     text-transform: uppercase;

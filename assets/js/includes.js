@@ -5,12 +5,24 @@ async function includeHTML(id, file) {
         return;
     }
 
-    const response = await fetch(file, { cache: "no-cache" });
-    element.innerHTML = await response.text();
+    try {
+        const response = await fetch(file, { cache: "no-cache" });
 
-    if (id === "site-header") {
-        setActiveNav();
-        initMobileNav();
+        if (!response.ok) {
+            throw new Error(`${file} returned ${response.status}`);
+        }
+
+        element.innerHTML = await response.text();
+
+        if (id === "site-header") {
+            setActiveNav();
+            initMobileNav();
+        }
+    } catch (error) {
+        console.error(`Could not load ${file}:`, error);
+        element.innerHTML = id === "site-header"
+            ? '<a class="component-fallback" href="/">djfox11.dev</a>'
+            : '<p class="component-error">Site footer unavailable.</p>';
     }
 }
 

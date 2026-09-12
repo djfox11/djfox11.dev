@@ -670,7 +670,7 @@
     content: "0" counter(about-panel);
     position: absolute;
     color: var(--quiet);
-    font: 400 .67rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .1em
 }
 
@@ -717,7 +717,7 @@
 
 .about-card-label {
     color: var(--quiet);
-    font: 400 .66rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .1em
 }
 
@@ -754,7 +754,7 @@
     border-bottom: 1px solid var(--line);
     border-radius: 0;
     color: var(--muted);
-    font: 400 .7rem "IBM Plex Mono", monospace;
+    font: 400 var(--mono-meta-size) "IBM Plex Mono", monospace;
     letter-spacing: .045em;
     text-transform: uppercase;
     transition: background .2s, color .2s
