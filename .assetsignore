@@ -1,0 +1,8 @@
+.git/
+.wrangler/
+.github/
+.vscode/
+.gitignore
+wrangler.jsonc
+README.md
+LICENSE
