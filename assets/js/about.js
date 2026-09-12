@@ -31,13 +31,12 @@ if (
     let playRequest = 0;
     let coverChangeTimeout;
     let coverChangeRequest = 0;
-    let volumeAnimationFrame = null;
 
     // ---------------------------------------------------------
     // AUDIO SETTINGS
     // ---------------------------------------------------------
 
-    const FADE_DURATION = 2; // seconds
+    const TRACK_SWITCH_DELAY_MS = 250;
 
     /*
         Loudness correction based on measured integrated LUFS.
@@ -79,71 +78,8 @@ if (
         return dbToVolume(gainDb);
     }
 
-    // ---------------------------------------------------------
-    // SMOOTH FADE HANDLING
-    // ---------------------------------------------------------
-
-    function calculatePlaybackVolume() {
-        const targetVolume = getTrackVolume(selectedItem);
-        const currentTime = musicAudio.currentTime;
-        const duration = musicAudio.duration;
-
-        if (!Number.isFinite(duration) || duration <= 0) {
-            return targetVolume;
-        }
-
-        let fadeMultiplier = 1;
-
-        // Fade in over the first 2 seconds.
-        if (currentTime < FADE_DURATION) {
-            fadeMultiplier = currentTime / FADE_DURATION;
-        }
-
-        // Fade out over the final 2 seconds.
-        const timeRemaining = duration - currentTime;
-
-        if (timeRemaining < FADE_DURATION) {
-            fadeMultiplier = Math.min(
-                fadeMultiplier,
-                Math.max(0, timeRemaining / FADE_DURATION)
-            );
-        }
-
-        return Math.max(
-            0,
-            Math.min(1, targetVolume * fadeMultiplier)
-        );
-    }
-
     function updatePlaybackVolume() {
-        musicAudio.volume = calculatePlaybackVolume();
-    }
-
-    function runVolumeAnimation() {
-        updatePlaybackVolume();
-
-        if (!musicAudio.paused && !musicAudio.ended) {
-            volumeAnimationFrame =
-                requestAnimationFrame(runVolumeAnimation);
-        } else {
-            volumeAnimationFrame = null;
-        }
-    }
-
-    function startVolumeAnimation() {
-        if (volumeAnimationFrame !== null) {
-            cancelAnimationFrame(volumeAnimationFrame);
-        }
-
-        volumeAnimationFrame =
-            requestAnimationFrame(runVolumeAnimation);
-    }
-
-    function stopVolumeAnimation() {
-        if (volumeAnimationFrame !== null) {
-            cancelAnimationFrame(volumeAnimationFrame);
-            volumeAnimationFrame = null;
-        }
+        musicAudio.volume = getTrackVolume(selectedItem);
     }
 
     // ---------------------------------------------------------
@@ -278,26 +214,29 @@ if (
     // PLAYBACK
     // ---------------------------------------------------------
 
-    async function playClip() {
+    async function playClip(delayMs = 0) {
         const request = ++playRequest;
+
+        if (delayMs) {
+            musicStatus.textContent =
+                `Selected ${selectedItem.dataset.title}`;
+
+            await new Promise((resolve) => {
+                window.setTimeout(resolve, delayMs);
+            });
+
+            if (request !== playRequest) return;
+        }
 
         musicStatus.textContent =
             `Loading ${selectedItem.dataset.title}…`;
 
-        /*
-            Set the correct volume immediately before playback.
-
-            If we're at the beginning of the track, this will be zero
-            because the fade starts from silence.
-        */
         updatePlaybackVolume();
 
         try {
             await musicAudio.play();
 
             if (request !== playRequest) return;
-
-            startVolumeAnimation();
         } catch (error) {
             /*
                 A newer selection or a pause can cancel a pending
@@ -353,7 +292,6 @@ if (
             ++playRequest;
 
             musicAudio.pause();
-            stopVolumeAnimation();
 
             // Select new song.
             selectedItem = item;
@@ -365,13 +303,7 @@ if (
                 `${item.dataset.title} audio clip`
             );
 
-            /*
-                Start at silence.
-
-                loadedmetadata/playback will calculate the proper
-                loudness-adjusted fade volume from here.
-            */
-            musicAudio.volume = 0;
+            updatePlaybackVolume();
 
             changeCover(item);
 
@@ -384,7 +316,7 @@ if (
             updateTimeline();
             updateControls();
 
-            playClip();
+            playClip(TRACK_SWITCH_DELAY_MS);
         });
     });
 
@@ -414,7 +346,6 @@ if (
 
     musicAudio.addEventListener("play", () => {
         updateControls();
-        startVolumeAnimation();
     });
 
     musicAudio.addEventListener(
@@ -438,13 +369,9 @@ if (
             `Playing ${selectedItem.dataset.title}`;
 
         updateControls();
-        startVolumeAnimation();
     });
 
     musicAudio.addEventListener("pause", () => {
-        stopVolumeAnimation();
-        updatePlaybackVolume();
-
         if (
             !musicAudio.ended &&
             !musicAudio.error
@@ -459,12 +386,17 @@ if (
     });
 
     musicAudio.addEventListener("ended", () => {
-        stopVolumeAnimation();
-
-        // Ensure we actually reach silence at the end.
-        musicAudio.volume = 0;
-
         updateControls();
+
+        const currentIndex = musicItems.indexOf(selectedItem);
+        const nextItem = musicItems[currentIndex + 1];
+
+        if (nextItem) {
+            nextItem.click();
+        } else {
+            musicStatus.textContent =
+                "Playlist finished. Choose a song to listen again.";
+        }
     });
 
     musicAudio.addEventListener("waiting", () => {
@@ -475,8 +407,6 @@ if (
     });
 
     musicAudio.addEventListener("error", () => {
-        stopVolumeAnimation();
-
         musicStatus.textContent =
             "This clip couldn't be loaded. Try another song.";
 
@@ -488,15 +418,6 @@ if (
         updateTimeline
     );
 
-    /*
-        Makes the volume immediately correct if the user seeks through
-        the track using another control or script.
-    */
-    musicAudio.addEventListener(
-        "seeked",
-        updatePlaybackVolume
-    );
-
     // ---------------------------------------------------------
     // PAGE CLEANUP
     // ---------------------------------------------------------
@@ -504,7 +425,6 @@ if (
     window.addEventListener("pagehide", () => {
         ++playRequest;
 
-        stopVolumeAnimation();
         musicAudio.pause();
     });
 
@@ -512,12 +432,6 @@ if (
     // INITIAL STATE
     // ---------------------------------------------------------
 
-    /*
-        Apply the initial song's loudness correction.
-
-        If the audio starts at 0:00, it'll correctly start at volume 0
-        ready for the fade-in.
-    */
     updatePlaybackVolume();
     updateTimeline();
     updateControls();

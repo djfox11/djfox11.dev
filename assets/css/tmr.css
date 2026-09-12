@@ -112,6 +112,7 @@
     position: relative;
     z-index: 1;
     width: clamp(170px, 22vw, 330px);
+    height: auto;
     align-self: center;
     margin: auto;
     filter: brightness(0);
