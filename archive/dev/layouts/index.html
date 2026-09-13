@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index of /archive/dev/layouts/</title>
+  <link rel="stylesheet" href="../../archive.css">
+</head>
+<body>
+  <h1>Index of /archive/dev/layouts/</h1>
+  <div class="index-block">
+  <table class="index" aria-label="Directory listing">
+    <thead>
+      <tr>
+        <th class="icon"></th>
+        <th class="name"><a href="?C=N;O=A">Name</a></th>
+        <th class="modified"><a href="?C=M;O=A">Last modified</a></th>
+        <th class="size"><a href="?C=S;O=A">Size</a></th>
+        <th class="description"><a href="?C=D;O=A">Description</a></th>
+      </tr>
+      <tr class="separator">
+        <th colspan="5"><hr></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="parent">
+        <td class="icon"><img src="../../icons/back.png" alt="[PARENTDIR]"></td>
+        <td class="name"><a href="../index.html">Parent Directory</a></td>
+        <td class="modified"></td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../../icons/script.png" alt="[   ]"></td>
+        <td class="name"><a href="home_01.html" data-file-link>home_01.html</a></td>
+        <td class="modified">2023-07-29 14:05</td>
+        <td class="size">23.6K</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../../icons/script.png" alt="[   ]"></td>
+        <td class="name"><a href="home_02.html" data-file-link>home_02.html</a></td>
+        <td class="modified">2023-01-25 05:30</td>
+        <td class="size">78.0K</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../../icons/script.png" alt="[   ]"></td>
+        <td class="name"><a href="projects_old.html" data-file-link>projects_old.html</a></td>
+        <td class="modified">2023-11-02 12:12</td>
+        <td class="size">62.0K</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../../icons/script.png" alt="[   ]"></td>
+        <td class="name"><a href="sidebar_test.html" data-file-link>sidebar_test.html</a></td>
+        <td class="modified">2023-03-26 07:21</td>
+        <td class="size">76.4K</td>
+        <td class="description"></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr class="closing-rule">
+  </div>
+  <address>Apache/2.4.54 (Unix) Server at djfox11.dev Port 443</address>
+  <script>
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a[data-file-link]");
+      if (!link) return;
+
+      event.preventDefault();
+      document.querySelectorAll("a[data-file-link].selected-file")
+        .forEach((item) => item.classList.remove("selected-file"));
+      link.classList.add("selected-file");
+    });
+  </script>
+</body>
+</html>

@@ -107,3 +107,5 @@ function initMobileNav() {
 
 includeHTML("site-header", "/assets/components/header.html");
 includeHTML("site-footer", "/assets/components/footer.html");
+
+console.warn("Legacy archive still mounted at /archive/")

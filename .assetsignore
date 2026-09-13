@@ -6,3 +6,9 @@
 wrangler.jsonc
 README.md
 LICENSE
+node_modules/
+package.json
+package-lock.json
+assets/js/archive/
+assets/js/archive.js
+archive/README.md

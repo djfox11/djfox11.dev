@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index of /archive/temp/</title>
+  <link rel="stylesheet" href="../archive.css">
+</head>
+<body>
+  <h1>Index of /archive/temp/</h1>
+  <div class="index-block">
+  <table class="index" aria-label="Directory listing">
+    <thead>
+      <tr>
+        <th class="icon"></th>
+        <th class="name"><a href="?C=N;O=A">Name</a></th>
+        <th class="modified"><a href="?C=M;O=A">Last modified</a></th>
+        <th class="size"><a href="?C=S;O=A">Size</a></th>
+        <th class="description"><a href="?C=D;O=A">Description</a></th>
+      </tr>
+      <tr class="separator">
+        <th colspan="5"><hr></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="parent">
+        <td class="icon"><img src="../icons/back.png" alt="[PARENTDIR]"></td>
+        <td class="name"><a href="../index.html">Parent Directory</a></td>
+        <td class="modified"></td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="export/index.html">export/</a></td>
+        <td class="modified">2024-01-01 16:22</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="old/index.html">old/</a></td>
+        <td class="modified">2024-11-08 23:11</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="test/index.html">test/</a></td>
+        <td class="modified">2024-07-10 07:05</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="test2/index.html">test2/</a></td>
+        <td class="modified">2024-02-26 06:52</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="test3/index.html">test3/</a></td>
+        <td class="modified">2024-08-08 23:05</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/unknown.png" alt="[   ]"></td>
+        <td class="name"><a href="0000.tmp" data-file-link>0000.tmp</a></td>
+        <td class="modified">2024-09-03 01:27</td>
+        <td class="size">311.8K</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/binary.png" alt="[   ]"></td>
+        <td class="name"><a href="cache.dat" data-file-link>cache.dat</a></td>
+        <td class="modified">2024-12-17 11:48</td>
+        <td class="size">3.7M</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/text.png" alt="[   ]"></td>
+        <td class="name"><a href="notes2.txt" data-file-link>notes2.txt</a></td>
+        <td class="modified">2024-04-27 22:02</td>
+        <td class="size">65.9K</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/text.png" alt="[   ]"></td>
+        <td class="name"><a href="untitled.txt" data-file-link>untitled.txt</a></td>
+        <td class="modified">2024-10-26 18:20</td>
+        <td class="size">40.0K</td>
+        <td class="description"></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr class="closing-rule">
+  </div>
+  <address>Apache/2.4.54 (Unix) Server at djfox11.dev Port 443</address>
+  <script>
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a[data-file-link]");
+      if (!link) return;
+
+      event.preventDefault();
+      document.querySelectorAll("a[data-file-link].selected-file")
+        .forEach((item) => item.classList.remove("selected-file"));
+      link.classList.add("selected-file");
+    });
+  </script>
+</body>
+</html>

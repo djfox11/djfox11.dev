@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Index of /archive/builds/</title>
+  <link rel="stylesheet" href="../archive.css">
+</head>
+<body>
+  <h1>Index of /archive/builds/</h1>
+  <div class="index-block">
+  <table class="index" aria-label="Directory listing">
+    <thead>
+      <tr>
+        <th class="icon"></th>
+        <th class="name"><a href="?C=N;O=A">Name</a></th>
+        <th class="modified"><a href="?C=M;O=A">Last modified</a></th>
+        <th class="size"><a href="?C=S;O=A">Size</a></th>
+        <th class="description"><a href="?C=D;O=A">Description</a></th>
+      </tr>
+      <tr class="separator">
+        <th colspan="5"><hr></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="parent">
+        <td class="icon"><img src="../icons/back.png" alt="[PARENTDIR]"></td>
+        <td class="name"><a href="../index.html">Parent Directory</a></td>
+        <td class="modified"></td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="2021/index.html">2021/</a></td>
+        <td class="modified">2021-11-01 01:24</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="2022/index.html">2022/</a></td>
+        <td class="modified">2022-10-16 21:57</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="2023/index.html">2023/</a></td>
+        <td class="modified">2023-04-22 07:36</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+      <tr>
+        <td class="icon"><img src="../icons/folder.png" alt="[DIR]"></td>
+        <td class="name"><a href="old/index.html">old/</a></td>
+        <td class="modified">2023-08-30 04:42</td>
+        <td class="size">-</td>
+        <td class="description"></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr class="closing-rule">
+  </div>
+  <address>Apache/2.4.54 (Unix) Server at djfox11.dev Port 443</address>
+  <script>
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a[data-file-link]");
+      if (!link) return;
+
+      event.preventDefault();
+      document.querySelectorAll("a[data-file-link].selected-file")
+        .forEach((item) => item.classList.remove("selected-file"));
+      link.classList.add("selected-file");
+    });
+  </script>
+</body>
+</html>

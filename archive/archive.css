@@ -1,0 +1,124 @@
+/* Intentionally close to an unstyled Apache mod_autoindex page. */
+
+body {
+  margin: 8px;
+  background: #fff;
+  color: #000;
+  font-size: 18px;
+  line-height: 1.05;
+}
+
+h1 {
+  margin: 0.67em 0;
+  font-size: 2em;
+}
+
+.index-block {
+  display: table;
+}
+
+.index {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: auto;
+}
+
+.index th,
+.index td {
+  height: 20px;
+  padding-top: 0;
+  padding-bottom: 0;
+  white-space: nowrap;
+}
+
+.index th {
+  font-weight: bold;
+}
+
+.index .separator th {
+  height: auto;
+  padding: 5px 0;
+}
+
+.index .separator hr {
+  margin: 0;
+}
+
+.index .icon {
+  box-sizing: border-box;
+  width: 24px;
+  padding-right: 4px;
+  text-align: left;
+}
+
+.index td.icon img {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 0;
+}
+
+.index .name {
+  min-width: 140px;
+  padding-right: 14px;
+}
+
+.index th.name {
+  text-align: center;
+}
+
+.index .modified {
+  min-width: 132px;
+  padding-right: 10px;
+}
+
+.index th.modified {
+  text-align: center;
+}
+
+.index .size {
+  min-width: 42px;
+  padding-right: 6px;
+  text-align: right;
+}
+
+/* Fake files do not navigate, so reproduce visited-link colour per item. */
+.index a[data-file-link],
+.index a[data-file-link]:visited {
+  color: #0000ee;
+}
+
+.index a[data-file-link].selected-file {
+  color: #551a8b;
+}
+
+.index th.size {
+  text-align: center;
+}
+
+.index .description {
+  min-width: 82px;
+  text-align: left;
+}
+
+.index th.description {
+  text-align: center;
+}
+
+.closing-rule {
+  margin: 6px 0;
+}
+
+address {
+  font-size: 18px;
+}
+
+@media (max-width: 640px) {
+  body {
+    overflow-x: auto;
+  }
+
+  .index {
+    min-width: 570px;
+  }
+}
