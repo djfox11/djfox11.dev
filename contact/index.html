@@ -113,10 +113,10 @@
                 </div>
 
                 <div class="form-field">
-                    <label for="reason">What's it about?</label>
+                    <label id="reason-label" for="reason">What's it about?</label>
 
-                    <div class="select-wrap">
-                        <select name="reason" id="reason" required>
+                    <div class="select-wrap" data-custom-select>
+                        <select class="native-select" name="reason" id="reason" required>
                             <option value="" selected disabled>Choose a topic</option>
                             <option value="General enquiry">A question</option>
                             <option value="Project feedback">Project feedback</option>
@@ -127,6 +127,24 @@
                         <svg class="select-arrow" viewBox="0 0 12 8" aria-hidden="true">
                             <path d="m1 1 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" />
                         </svg>
+
+                        <button class="custom-select-button" type="button" aria-haspopup="listbox"
+                            aria-expanded="false" aria-labelledby="reason-label reason-selected"
+                            aria-controls="reason-menu">
+                            <span id="reason-selected" data-selected-text>Choose a topic</span>
+                            <svg class="custom-select-arrow" viewBox="0 0 12 8" aria-hidden="true">
+                                <path d="m1 1 5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            </svg>
+                        </button>
+
+                        <ul class="custom-select-menu t-dropdown" id="reason-menu" role="listbox"
+                            aria-labelledby="reason-label" aria-hidden="true" data-origin="top-center">
+                            <li id="reason-general" role="option" aria-selected="false" data-value="General enquiry">A question</li>
+                            <li id="reason-feedback" role="option" aria-selected="false" data-value="Project feedback">Project feedback</li>
+                            <li id="reason-tutorial" role="option" aria-selected="false" data-value="Tutorial correction">An issue with a tutorial</li>
+                            <li id="reason-collaboration" role="option" aria-selected="false" data-value="Collaboration">Working together</li>
+                            <li id="reason-other" role="option" aria-selected="false" data-value="Other">Something else</li>
+                        </ul>
                     </div>
                 </div>
 

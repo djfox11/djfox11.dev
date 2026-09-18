@@ -78,6 +78,41 @@ function replaceText(selector, value) {
     }
 }
 
+function setDigits(group, value, animate = false) {
+    if (!group) {
+        return;
+    }
+
+    group.classList.remove("is-animating");
+    group.replaceChildren();
+
+    const characters = String(value).split("");
+    characters.forEach((character, index) => {
+        const digit = document.createElement("span");
+        digit.className = "t-digit";
+        digit.textContent = character;
+
+        if (index === characters.length - 2) {
+            digit.dataset.stagger = "1";
+        } else if (index === characters.length - 1) {
+            digit.dataset.stagger = "2";
+        }
+
+        group.appendChild(digit);
+    });
+
+    if (animate && !reduceMotion.matches) {
+        void group.offsetHeight;
+        group.classList.add("is-animating");
+    }
+}
+
+function animateDigitsWithin(container) {
+    container.querySelectorAll(".t-digit-group").forEach((group) => {
+        setDigits(group, group.textContent, true);
+    });
+}
+
 function renderPlatforms(platforms, totalAssets) {
     const container = document.querySelector("[data-tmr-platforms]");
     if (!container) {
@@ -97,7 +132,12 @@ function renderPlatforms(platforms, totalAssets) {
         bar.setAttribute("aria-hidden", "true");
 
         const count = document.createElement("strong");
-        count.textContent = numberFormatter.format(platform.count);
+        count.className = "t-digit-group";
+        setDigits(
+            count,
+            numberFormatter.format(platform.count),
+            container.closest(".tmr-section")?.classList.contains("is-visible")
+        );
 
         row.append(label, bar, count);
         fragment.append(row);
@@ -158,7 +198,12 @@ function renderPopularAssets(assets) {
 }
 
 function renderTmrData(data) {
-    replaceText("[data-tmr-total]", numberFormatter.format(data.totalAssets));
+    const total = document.querySelector("[data-tmr-total]");
+    setDigits(
+        total,
+        numberFormatter.format(data.totalAssets),
+        total?.closest(".tmr-summary")?.classList.contains("is-visible")
+    );
     replaceText("[data-tmr-role]", data.role === "Staff" ? "Staff member" : data.role);
     replaceText("[data-tmr-registered]", dateFormatter.format(new Date(`${data.registered}T12:00:00Z`)));
     replaceText("[data-tmr-updated]", dateFormatter.format(new Date(data.fetchedAt)));
@@ -166,6 +211,10 @@ function renderTmrData(data) {
     renderContributions(data.largestContributions);
     renderPopularAssets(data.popularAssets);
 }
+
+document.querySelectorAll(".t-digit-group").forEach((group) => {
+    setDigits(group, group.textContent);
+});
 
 async function loadTmrData() {
     try {
@@ -193,6 +242,7 @@ if (!reduceMotion.matches && "IntersectionObserver" in window) {
                 }
 
                 entry.target.classList.add("is-visible");
+                animateDigitsWithin(entry.target);
                 revealObserver.unobserve(entry.target);
             });
         },

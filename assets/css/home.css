@@ -97,10 +97,20 @@
 .home-feature {
     display: block;
     min-width: 0;
-    margin-top: 1rem;
+    margin-top: 0;
     text-decoration: none;
     border: 1px solid var(--line);
     background: var(--raised);
+}
+
+.home-feature-wrap {
+    min-width: 0;
+    margin-top: 1rem;
+    --tilt-glare-opacity: .14;
+}
+
+.home-feature.t-tilt-card {
+    border-radius: 0;
 }
 
 .home-feature:hover {
@@ -223,6 +233,15 @@
     border: 1px solid var(--line);
     background: var(--raised);
     text-decoration: none;
+    transition:
+        transform var(--duration-fast, 250ms) var(--ease-smooth-out, var(--ease)),
+        border-color var(--duration-fast, 250ms) ease,
+        background var(--duration-fast, 250ms) ease;
+}
+
+.home-card-reveal {
+    min-width: 0;
+    height: 100%;
 }
 
 .home-card::before {
@@ -235,6 +254,7 @@
 .home-card:hover {
     background: var(--soft);
     border-color: var(--line-strong);
+    transform: translateY(-4px);
 }
 
 .home-card-label {
@@ -339,6 +359,10 @@
     }
 
     .home-feature {
+        margin: 0;
+    }
+
+    .home-feature-wrap {
         margin: 0;
     }
 

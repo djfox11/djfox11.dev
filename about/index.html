@@ -99,7 +99,7 @@
 
                 <div class="about-panel-card">
 
-                    <div class="about-game-grid">
+                    <div class="about-game-grid" data-motion-reveal data-motion-stagger>
                         <div class="about-game-item">
                             <img src="/assets/images/about-games/mario.png" alt="" width="512" height="512" loading="lazy" decoding="async">
                             <span>Super Mario</span>
@@ -153,30 +153,29 @@
                     <p>
                         I also play piano, using sheet music and MIDI tools like Synthesia. That's another reason I spend so much time with game soundtracks.
                     </p>
-                    <p>
-                        To the right you'll find some of my favourite songs that you can enjoy too!
-                    </p>
                 </div>
 
                 <div class="about-panel-card about-music-card">
-                    <div class="music-picker">
+                    <div class="music-picker" data-motion-reveal data-motion-stagger>
                         <article class="music-display">
                             <img id="music-cover" src="/assets/images/music/ff7r.webp" alt="Final Fantasy VII Remake cover art" width="512" height="512" loading="lazy" decoding="async">
 
                             <div class="music-display-copy">
-                                <h3 id="music-title">Hollow</h3>
-                                <p id="music-source">Final Fantasy VII Remake</p>
+                                <h3><span id="music-title" class="t-text-swap">Hollow</span></h3>
+                                <p><span id="music-source" class="t-text-swap">Final Fantasy VII Remake</span></p>
                             </div>
                             <div class="music-player">
                                 <audio id="music-audio" preload="metadata" src="/assets/audio/hollow.mp3"></audio>
                                 <div class="music-player-controls">
                                     <button id="music-toggle" type="button" aria-label="Play Hollow clip">
-                                        <svg class="music-icon music-icon-play" viewBox="0 0 20 20" aria-hidden="true">
+                                        <span class="t-icon-swap" data-state="a" aria-hidden="true">
+                                        <svg class="music-icon music-icon-play t-icon" data-icon="a" viewBox="0 0 20 20">
                                             <path d="M6.5 4.5 15 10l-8.5 5.5z" />
                                         </svg>
-                                        <svg class="music-icon music-icon-pause" viewBox="0 0 20 20" aria-hidden="true">
+                                        <svg class="music-icon music-icon-pause t-icon" data-icon="b" viewBox="0 0 20 20">
                                             <path d="M5.5 4.5h3v11h-3zm6 0h3v11h-3z" />
                                         </svg>
+                                        </span>
                                     </button>
 
                                     <div class="music-timeline">

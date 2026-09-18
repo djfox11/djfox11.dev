@@ -104,6 +104,11 @@
     height: 100%;
     display: block;
     object-fit: contain;
+    transition: transform 700ms var(--ease);
+}
+
+.project-entry:hover .project-entry-image {
+    transform: scale(1.035) translateY(-4px);
 }
 
 .project-entry-content {

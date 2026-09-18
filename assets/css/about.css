@@ -873,7 +873,7 @@
     padding: .75rem 2.5rem .75rem 0;
     border-bottom: 1px solid var(--line);
     opacity: 1;
-    transition: padding .3s var(--ease)
+    transition: padding .3s var(--ease), background .3s ease, color .3s ease
 }
 
 .music-item::after {
@@ -1093,12 +1093,7 @@
     fill: currentColor;
 }
 
-.music-icon-pause,
-.music-player.is-playing .music-icon-play {
-    display: none;
-}
-
-.music-player.is-playing .music-icon-pause {
+.t-icon-swap .music-icon {
     display: block;
 }
 
@@ -1154,4 +1149,13 @@
 
 .music-item.is-playing::after {
     content: "PAUSE";
+}
+
+.about-game-item.t-stagger-line {
+    transition:
+        opacity var(--stagger-dur) var(--stagger-ease),
+        transform var(--stagger-dur) var(--stagger-ease),
+        filter var(--stagger-dur) var(--stagger-ease),
+        background .25s ease;
+    transition-delay: calc(var(--stagger-stagger) * var(--motion-order, 0));
 }

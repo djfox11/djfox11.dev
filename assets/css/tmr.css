@@ -259,6 +259,10 @@
     text-align: right;
 }
 
+.tmr-ledger-row strong.t-digit-group {
+    justify-self: end;
+}
+
 .tmr-archive-list {
     margin: 0;
     padding: 0;

@@ -1,3 +1,5 @@
+@import url("/assets/css/motion.css");
+
 * {
     box-sizing: border-box;
 }
@@ -616,18 +618,11 @@ a {
         align-items: end;
         padding: 7rem var(--gutter) 3rem;
         background: var(--paper);
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: translateY(-12px);
-        transition: opacity .18s, visibility .18s, transform .32s var(--ease)
+        --panel-translate-y: -18px;
     }
 
     .site-header.is-nav-open .nav {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: none
+        pointer-events: auto
     }
 
     .nav::before {
@@ -681,6 +676,26 @@ a {
     .nav a:hover,
     .nav a.active {
         color: var(--ink)
+    }
+
+    .nav a.t-stagger-line {
+        transition:
+            opacity var(--stagger-dur) var(--stagger-ease),
+            transform var(--stagger-dur) var(--stagger-ease),
+            filter var(--stagger-dur) var(--stagger-ease),
+            color .18s,
+            background .18s;
+        transition-delay: calc(var(--stagger-stagger) * var(--motion-order, 0))
+    }
+}
+
+@media(min-width:981px) {
+    .nav.t-panel-slide {
+        transform: none;
+        opacity: 1;
+        filter: none;
+        pointer-events: auto;
+        transition: none
     }
 }
 

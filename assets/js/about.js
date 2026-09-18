@@ -11,6 +11,7 @@ const musicCurrentTime = document.getElementById("music-current-time");
 const musicDuration = document.getElementById("music-duration");
 const musicPlayer = document.querySelector(".music-player");
 const musicDisplay = document.querySelector(".music-display");
+const musicIconSwap = musicToggle?.querySelector(".t-icon-swap");
 
 if (
     musicAudio &&
@@ -22,6 +23,7 @@ if (
     musicDuration &&
     musicPlayer &&
     musicDisplay &&
+    musicIconSwap &&
     musicItems.length
 ) {
     let selectedItem =
@@ -31,6 +33,10 @@ if (
     let playRequest = 0;
     let coverChangeTimeout;
     let coverChangeRequest = 0;
+    const textSwapTimers = new WeakMap();
+    const textSwapDuration = parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--text-swap-dur")
+    ) || 200;
 
     // ---------------------------------------------------------
     // AUDIO SETTINGS
@@ -160,6 +166,23 @@ if (
         }, 180);
     }
 
+    function swapText(element, nextText) {
+        window.clearTimeout(textSwapTimers.get(element));
+        element.classList.remove("is-exit", "is-enter-start");
+        void element.offsetHeight;
+        element.classList.add("is-exit");
+
+        const timer = window.setTimeout(() => {
+            element.textContent = nextText;
+            element.classList.remove("is-exit");
+            element.classList.add("is-enter-start");
+            void element.offsetHeight;
+            element.classList.remove("is-enter-start");
+        }, textSwapDuration);
+
+        textSwapTimers.set(element, timer);
+    }
+
     // ---------------------------------------------------------
     // PLAYER CONTROLS
     // ---------------------------------------------------------
@@ -173,6 +196,8 @@ if (
             "is-playing",
             playing
         );
+
+        musicIconSwap.dataset.state = playing ? "b" : "a";
 
         musicToggle.setAttribute(
             "aria-label",
@@ -307,11 +332,8 @@ if (
 
             changeCover(item);
 
-            musicTitle.textContent =
-                item.dataset.title;
-
-            musicSource.textContent =
-                item.dataset.source;
+            swapText(musicTitle, item.dataset.title);
+            swapText(musicSource, item.dataset.source);
 
             updateTimeline();
             updateControls();

@@ -22,7 +22,10 @@
     overflow: hidden;
     background: var(--raised);
     border: 1px solid var(--line);
-    transition: border-color .25s ease, background .25s ease;
+    transition:
+        transform .25s var(--ease),
+        border-color .25s ease,
+        background .25s ease;
 }
 
 .badge-card:not(.badge-card-upcoming) {
@@ -31,6 +34,7 @@
 
 .badge-card:not(.badge-card-upcoming):hover {
     border-color: var(--ink);
+    transform: translateY(-4px);
 }
 
 .badge-card-link {

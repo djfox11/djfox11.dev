@@ -41,7 +41,7 @@
 
     <main id="main-content" class="home-page" tabindex="-1">
         <section class="home-hero" aria-labelledby="home-title">
-            <div class="home-hero-copy">
+            <div class="home-hero-copy" data-motion-reveal data-motion-stagger>
                 <h1 id="home-title">Game models,<br>Blender, and<br>figuring things out<span>.</span></h1>
                 <p class="home-lede">I'm djfox11. I work with game assets, write tools, and spend a lot of time getting models and materials working in Blender. This is where I share my tutorials, projects, and things I've figured out along the way.</p>
                 <div class="home-actions">
@@ -49,15 +49,18 @@
                     <a href="/about/" class="home-text-link">A little about me <span class="referral-arrow" aria-hidden="true">↗</span></a>
                 </div>
             </div>
-            <a class="home-feature" href="https://github.com/djfox11/Odyssey-Toolkit" target="_blank" rel="noopener noreferrer">
-                <div class="home-feature-image">
-                    <img src="/assets/images/projects/odyssey-toolkit.webp" alt="Mario and Cappy exploring the worlds of Super Mario Odyssey" width="620" height="620" fetchpriority="high" decoding="async">
-                </div>
-                <div class="home-feature-caption">
-                    <div><span class="home-eyebrow">Featured project / GitHub</span><h2>Odyssey Toolkit</h2><p>Blender addon for importing models and stages from Super Mario Odyssey</p></div>
-                    <span class="referral-arrow" aria-hidden="true">↗</span>
-                </div>
-            </a>
+            <div class="home-feature-wrap t-tilt" data-motion-reveal data-motion-stagger>
+                <a class="home-feature t-tilt-card" href="https://github.com/djfox11/Odyssey-Toolkit" target="_blank" rel="noopener noreferrer">
+                    <div class="home-feature-image">
+                        <img src="/assets/images/projects/odyssey-toolkit.webp" alt="Mario and Cappy exploring the worlds of Super Mario Odyssey" width="620" height="620" fetchpriority="high" decoding="async">
+                    </div>
+                    <div class="home-feature-caption">
+                        <div><span class="home-eyebrow">Featured project / GitHub</span><h2>Odyssey Toolkit</h2><p>Blender addon for importing models and stages from Super Mario Odyssey</p></div>
+                        <span class="referral-arrow" aria-hidden="true">↗</span>
+                    </div>
+                    <span class="t-tilt-glare" aria-hidden="true"></span>
+                </a>
+            </div>
         </section>
         <div class="home-topics" aria-label="Topics"><span>Game asset research</span><span>Blender workflows</span><span>Models &amp; materials</span><span>Tools &amp; experiments</span></div>
 
@@ -69,8 +72,9 @@
                 </p>
             </div>
 
-            <div class="home-card-grid">
-                <a href="/about/" class="home-card">
+            <div class="home-card-grid" data-motion-reveal data-motion-stagger>
+                <div class="home-card-reveal">
+                <a href="/about/" class="home-card t-learn">
                     <span class="home-card-label">About</span>
                     <h3>About djfox11</h3>
                     <p>
@@ -78,11 +82,13 @@
                     </p>
                     <span class="home-card-footer">
                         Read more
-                        <span class="referral-arrow" aria-hidden="true">↗</span>
+                        <span class="t-learn-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4L10 8"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8L6 12"/></svg></span>
                     </span>
                 </a>
+                </div>
 
-                <a href="/projects/" class="home-card">
+                <div class="home-card-reveal">
+                <a href="/projects/" class="home-card t-learn">
                     <span class="home-card-label">Projects</span>
                     <h3>Things I’ve worked on</h3>
                     <p>
@@ -90,11 +96,13 @@
                     </p>
                     <span class="home-card-footer">
                         View projects
-                        <span class="referral-arrow" aria-hidden="true">↗</span>
+                        <span class="t-learn-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4L10 8"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8L6 12"/></svg></span>
                     </span>
                 </a>
+                </div>
 
-                <a href="/tutorials/" class="home-card">
+                <div class="home-card-reveal">
+                <a href="/tutorials/" class="home-card t-learn">
                     <span class="home-card-label">Tutorials</span>
                     <h3>Written guides</h3>
                     <p>
@@ -102,9 +110,10 @@
                     </p>
                     <span class="home-card-footer">
                         Browse tutorials
-                        <span class="referral-arrow" aria-hidden="true">↗</span>
+                        <span class="t-learn-chevron" aria-hidden="true"><svg viewBox="0 0 16 16"><path class="t-learn-arm t-learn-arm-top" d="M6 4L10 8"/><path class="t-learn-arm t-learn-arm-bot" d="M10 8L6 12"/></svg></span>
                     </span>
                 </a>
+                </div>
             </div>
         </section>
 
